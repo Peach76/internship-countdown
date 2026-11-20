@@ -1,278 +1,215 @@
 <!doctype html>
 <html lang="th">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1220">
-  <title>Live Countdown · 12 มีนาคม 2570</title>
-  <style>
-    :root{--bg:#08111f;--panel:#101c2d;--panel2:#132238;--line:#24354b;--muted:#91a3ba;--text:#edf4fb;--green:#62e6b1;--blue:#6db9ff;--orange:#ffbd69;--red:#ff7f88;--shadow:0 18px 50px rgba(0,0,0,.22)}
-    *{box-sizing:border-box}
-    body{margin:0;background:radial-gradient(ellipse at 15% -15%,rgba(40,111,118,.23),transparent 42%),radial-gradient(ellipse at 100% 0%,rgba(47,90,158,.18),transparent 38%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,"Noto Sans Thai",sans-serif;min-height:100vh}
-    .wrap{width:min(1180px,calc(100% - 34px));margin:0 auto;padding:28px 0 42px}
-    .top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
-    .brand{display:flex;align-items:center;gap:12px}.mark{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#1b9a7a,#4c9be8);display:grid;place-items:center;font-size:20px;box-shadow:0 8px 24px rgba(41,187,149,.22)}
-    .eyebrow{color:var(--green);font-size:11px;letter-spacing:2px;font-weight:800}.brand h1{font-size:18px;margin:2px 0 0;letter-spacing:.2px}
-    .live{display:flex;align-items:center;gap:8px;color:#b8c8d9;font-size:12px;background:rgba(16,28,45,.8);border:1px solid var(--line);padding:9px 12px;border-radius:999px}.dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 0 5px rgba(98,230,177,.1)}
-    .hero{display:grid;grid-template-columns:1.4fr .8fr;gap:16px;margin-bottom:16px}
-    .panel{background:linear-gradient(145deg,rgba(19,34,56,.96),rgba(13,25,42,.96));border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
-    .timer-panel{padding:26px 28px;position:relative;overflow:hidden}.timer-panel:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-100px;top:-115px;border:1px solid rgba(98,230,177,.12);box-shadow:0 0 0 28px rgba(98,230,177,.025),0 0 0 58px rgba(98,230,177,.02);pointer-events:none}
-    .section-label{font-size:11px;color:var(--muted);font-weight:800;letter-spacing:1.7px;text-transform:uppercase}.target{font-size:14px;margin-top:7px;color:#dce8f4}.target strong{color:var(--green);font-weight:750}
-    .timer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:26px 0 18px;max-width:700px;position:relative;z-index:1}
-    .timebox{background:rgba(5,13,24,.48);border:1px solid rgba(134,164,198,.16);border-radius:14px;padding:16px 8px 13px;text-align:center}.timebox .num{font-size:clamp(28px,5vw,48px);font-weight:800;line-height:1.1;letter-spacing:-1.5px;font-variant-numeric:tabular-nums}.timebox .unit{color:var(--muted);font-size:11px;margin-top:7px;letter-spacing:1px}
-    .timer-foot{color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
-    .goal-panel{padding:23px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}.goal-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.pill{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--green);border:1px solid rgba(98,230,177,.28);background:rgba(98,230,177,.08);padding:6px 9px;border-radius:999px}.goal-date{font-size:29px;font-weight:800;line-height:1.2;margin-top:14px}.goal-date small{display:block;color:var(--muted);font-size:13px;font-weight:500;margin-top:7px}.percent{display:flex;align-items:end;justify-content:space-between;gap:8px;margin-bottom:9px}.percent strong{font-size:27px;font-variant-numeric:tabular-nums}.percent span{color:var(--muted);font-size:11px}.bar{height:9px;background:#26374b;border-radius:99px;overflow:hidden}.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#28b88f,#8ce9c4);border-radius:99px;transition:width .25s}.goal-note{color:var(--muted);font-size:11px;line-height:1.6;margin-top:10px}
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}.stat{padding:18px 19px;min-height:125px}.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px}.icon{width:31px;height:31px;display:grid;place-items:center;border-radius:10px;background:rgba(109,185,255,.1);color:var(--blue);font-size:15px}.stat:nth-child(2) .icon{background:rgba(98,230,177,.1);color:var(--green)}.stat:nth-child(3) .icon{background:rgba(255,189,105,.1);color:var(--orange)}.stat:nth-child(4) .icon{background:rgba(255,127,136,.1);color:var(--red)}
-    .stat .value{font-size:31px;font-weight:800;letter-spacing:-.8px;margin-top:9px;font-variant-numeric:tabular-nums}.stat .sub{font-size:11px;color:var(--muted);margin-top:2px}
-    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:16px;margin-bottom:16px}.content{padding:22px}.heading{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:16px}.heading h2{font-size:15px;margin:0}.heading small{color:var(--muted);font-size:11px}
-    .hours-total{font-size:32px;font-weight:800;letter-spacing:-1px}.hours-total span{font-size:13px;color:var(--muted);font-weight:500;letter-spacing:0}.progress-row{margin-top:17px}.progress-meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:11px;margin-bottom:8px}.progress-meta b{color:#e8f2fc;font-weight:700}.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;color:var(--muted);font-size:11px}.legend span{display:flex;align-items:center;gap:7px}.swatch{width:8px;height:8px;border-radius:3px;background:var(--green)}.swatch.off{background:var(--orange)}
-    .month-list{display:grid;gap:12px}.month-row{display:grid;grid-template-columns:92px 1fr 55px;gap:12px;align-items:center}.month-name{font-size:12px;color:#dfe9f4}.month-track{height:8px;background:#25354a;border-radius:99px;overflow:hidden;display:flex}.month-track .work{background:linear-gradient(90deg,#25a982,#66dfb0);height:100%}.month-track .off{background:#e4a752;height:100%}.month-count{text-align:right;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
-    .holidays{display:grid;gap:0}.holiday{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid rgba(130,155,184,.12)}.holiday:last-child{border-bottom:0;padding-bottom:0}.holiday .date{min-width:94px;color:var(--orange);font-weight:750;font-size:12px}.holiday .name{font-size:12px;color:#dbe6f1;flex:1}.holiday .type{font-size:10px;color:var(--muted);white-space:nowrap}
-    .footnote{padding:15px 18px;color:var(--muted);font-size:11px;line-height:1.75}.footnote strong{color:#dce8f4}.footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#71849c;font-size:10px;padding:3px 4px}.actions{display:flex;gap:8px}.btn{border:1px solid var(--line);background:#122238;color:#cfe0ef;padding:8px 11px;border-radius:9px;font-size:11px;cursor:pointer}.btn:hover{border-color:#4d789b;background:#172b44}
-    @media(max-width:800px){.hero,.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:480px){.wrap{width:calc(100% - 22px);padding-top:16px}.timer-panel,.goal-panel,.content{padding:18px}.timer{gap:6px;margin:20px 0 15px}.timebox{padding:13px 4px 11px}.timebox .num{font-size:29px}.stats{gap:9px}.stat{padding:14px;min-height:112px}.stat .value{font-size:26px}.month-row{grid-template-columns:74px 1fr 45px;gap:8px}.holiday .date{min-width:84px}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#081321">
+<meta name="description" content="แดชบอร์ดติดตามการฝึกงาน ปฏิทิน บันทึกงาน สถิติ และนับถอยหลังถึงวันสิ้นสุด">
+<title>Internship Tracker · 12 มีนาคม 2570</title>
+<style>
+:root{--bg:#07111e;--panel:#0e1d2e;--panel2:#13263b;--line:#233b52;--text:#edf5fb;--muted:#91a7bb;--green:#61e2b1;--green2:#239d7b;--blue:#79baff;--orange:#ffc16b;--red:#ff818b;--purple:#b4a0ff;--shadow:0 16px 44px rgba(0,0,0,.22);--radius:18px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 12% -15%,rgba(37,139,119,.19),transparent 40%),radial-gradient(ellipse at 95% 0%,rgba(69,106,176,.15),transparent 36%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,"Noto Sans Thai",sans-serif;min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:2px}.app{width:min(1320px,calc(100% - 32px));margin:0 auto;padding:24px 0 40px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#168b70,#4b9ce3);font-size:22px;box-shadow:0 8px 22px #1a9d7b33}.eyebrow{font-size:10px;letter-spacing:1.8px;color:var(--green);font-weight:800}.brand h1{font-size:18px;margin:2px 0 0}.top-right{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.live{display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:#102137;border-radius:99px;padding:9px 13px;font-size:11px;color:#c5d4e2}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px #61e2b11d}.nav{display:flex;gap:7px;overflow:auto;padding:5px;margin:0 0 17px;border:1px solid var(--line);background:#0b1929;border-radius:14px;scrollbar-width:thin}.nav button{border:0;background:transparent;color:var(--muted);padding:10px 15px;border-radius:10px;white-space:nowrap;font-size:12px;font-weight:700}.nav button.active{color:#061b17;background:var(--green);box-shadow:0 5px 17px #44d4a52a}.view{display:none}.view.active{display:block}.panel{background:linear-gradient(145deg,rgba(18,37,58,.97),rgba(12,27,44,.97));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.hero{display:grid;grid-template-columns:1.35fr .85fr;gap:14px;margin-bottom:14px}.timer-panel{padding:24px 25px;position:relative;overflow:hidden}.timer-panel:after{content:"";position:absolute;width:260px;height:260px;right:-100px;top:-130px;border-radius:50%;border:1px solid #61e2b12b;box-shadow:0 0 0 28px #61e2b10a,0 0 0 58px #61e2b108;pointer-events:none}.section-label{font-size:10px;color:var(--muted);font-weight:800;letter-spacing:1.5px}.target{font-size:13px;color:#dbe8f3;margin-top:7px}.target strong{color:var(--green)}.timer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:23px 0 16px;max-width:680px;position:relative;z-index:1}.timebox{background:#071321a8;border:1px solid #8ba7c51c;border-radius:13px;padding:14px 7px;text-align:center}.timebox .num{font-size:clamp(28px,4.5vw,47px);font-weight:850;line-height:1.08;letter-spacing:-1.5px;font-variant-numeric:tabular-nums}.timebox .unit{font-size:10px;color:var(--muted);margin-top:7px}.timer-foot{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:11px;position:relative;z-index:1}.goal-panel{padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}.goal-date{font-size:28px;font-weight:850;margin-top:13px;line-height:1.2}.goal-date small{display:block;color:var(--muted);font-size:12px;font-weight:500;margin-top:7px}.pill{display:inline-flex;align-items:center;border:1px solid #61e2b144;background:#61e2b111;color:var(--green);border-radius:99px;padding:6px 9px;font-size:10px;font-weight:800}.percent{display:flex;justify-content:space-between;align-items:end;gap:8px;margin-bottom:8px}.percent strong{font-size:26px;font-variant-numeric:tabular-nums}.percent span{font-size:10px;color:var(--muted)}.bar{height:9px;background:#263c52;border-radius:99px;overflow:hidden}.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#239d7b,#70e8bb);border-radius:99px;transition:width .2s}.goal-note{font-size:10px;color:var(--muted);margin-top:9px;line-height:1.6}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}.stat{padding:16px 17px;min-height:116px}.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px}.icon{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:var(--blue);background:#79baff15;font-size:15px}.stat:nth-child(2) .icon{color:var(--green);background:#61e2b116}.stat:nth-child(3) .icon{color:var(--orange);background:#ffc16b16}.stat:nth-child(4) .icon{color:var(--purple);background:#b4a0ff16}.stat .value{font-size:29px;font-weight:850;letter-spacing:-.7px;margin-top:8px;font-variant-numeric:tabular-nums}.stat .sub{font-size:10px;color:var(--muted);margin-top:2px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}.content{padding:19px}.heading{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.heading h2{font-size:14px;margin:0}.heading small{font-size:10px;color:var(--muted)}.today-box{display:flex;align-items:center;gap:13px;padding:14px;border:1px solid #61e2b12d;background:#61e2b10b;border-radius:13px}.today-icon{height:42px;width:42px;border-radius:12px;background:#61e2b119;color:var(--green);display:grid;place-items:center;font-size:20px;flex:none}.today-box strong{display:block;font-size:13px}.today-box span{display:block;color:var(--muted);font-size:11px;margin-top:3px}.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.mini{border:1px solid #829bb21c;background:#07132155;border-radius:12px;padding:11px}.mini .k{font-size:10px;color:var(--muted)}.mini .v{font-size:19px;font-weight:800;margin-top:3px}.progress-item{margin-top:16px}.progress-meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:10px;margin-bottom:7px}.progress-meta b{color:var(--text)}.month-bars{display:grid;gap:12px}.month-row{display:grid;grid-template-columns:90px 1fr 80px;gap:10px;align-items:center}.month-name{font-size:11px}.month-track{height:9px;background:#26394d;border-radius:99px;overflow:hidden;display:flex}.month-track .work{height:100%;background:linear-gradient(90deg,#239d7b,#70e8bb)}.month-track .off{height:100%;background:#e0a64e}.month-count{text-align:right;color:var(--muted);font-size:10px;font-variant-numeric:tabular-nums}.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:10px;margin-top:13px}.legend span{display:flex;align-items:center;gap:6px}.swatch{width:8px;height:8px;border-radius:3px;background:var(--green)}.swatch.off{background:var(--orange)}.swatch.today{background:var(--blue)}.list{display:grid;gap:0}.list-row{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid #8ba2b21a}.list-row:last-child{border-bottom:0;padding-bottom:0}.list-date{min-width:88px;color:var(--orange);font-size:11px;font-weight:800}.list-detail{flex:1;font-size:11px;color:#dbe6f0}.list-kind{font-size:9px;color:var(--muted);white-space:nowrap}.btn{border:1px solid var(--line);background:#12263c;color:#d9e7f2;padding:9px 12px;border-radius:10px;font-size:11px;font-weight:700;transition:.15s}.btn:hover{border-color:#4b8197;background:#18334b}.btn.primary{border-color:transparent;background:var(--green);color:#06221a}.btn.danger{border-color:#ff818b44;color:#ffabb1;background:#ff818b0b}.btn.small{padding:6px 9px;font-size:10px}.btn.ghost{background:transparent}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.field{display:grid;gap:6px}.field label{font-size:10px;color:var(--muted);font-weight:700}.field input,.field textarea,.field select,.search{width:100%;border:1px solid var(--line);background:#081726;color:var(--text);padding:10px 11px;border-radius:10px;font-size:12px;min-width:0}.field textarea{min-height:88px;resize:vertical}.field input::placeholder,.field textarea::placeholder,.search::placeholder{color:#657d94}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field.full{grid-column:1/-1}.form-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.empty{padding:25px;text-align:center;border:1px dashed #57708955;border-radius:13px;color:var(--muted);font-size:12px}.calendar-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}.calendar-title{font-size:17px;font-weight:800}.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.weekday{text-align:center;color:var(--muted);font-size:10px;font-weight:800;padding:7px 0}.day{min-height:74px;border:1px solid #263c51;background:#0a1929;border-radius:11px;padding:8px;text-align:left;color:var(--text);display:flex;flex-direction:column;justify-content:space-between;gap:6px;min-width:0}.day:hover{border-color:#73a4b7}.day.blank{visibility:hidden}.day .dnum{font-size:12px;font-weight:800}.day .tag{font-size:9px;line-height:1.25;color:var(--muted)}.day.workday{background:#61e2b109}.day.weekend{background:#ffc16b0a}.day.holiday{background:#ff818b0b;border-color:#ff818b35}.day.today{outline:2px solid var(--blue);outline-offset:1px}.day.selected{border-color:var(--green);background:#61e2b11b}.day.other{opacity:.5}.day .log-dot{width:6px;height:6px;border-radius:50%;background:var(--purple);display:inline-block;margin-right:4px}.calendar-legend{display:flex;gap:13px;flex-wrap:wrap;margin-top:13px}.calendar-legend span{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px}.key{width:9px;height:9px;border-radius:3px;background:#61e2b1}.key.weekend{background:#ffc16b}.key.holiday{background:#ff818b}.key.logged{background:#b4a0ff}.selected-day{margin-top:14px;padding:13px;border:1px solid var(--line);border-radius:12px;background:#091827;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.selected-day strong{font-size:12px}.selected-day span{font-size:10px;color:var(--muted)}.log-list{display:grid;gap:10px;margin-top:13px}.log-card{border:1px solid #294158;background:#0a1929;border-radius:13px;padding:13px}.log-card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.log-card h3{font-size:12px;margin:0}.log-card p{font-size:11px;color:var(--muted);line-height:1.6;margin:7px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.log-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px;color:var(--muted);font-size:9px}.tag-pill{display:inline-flex;border:1px solid #83a3bb2c;background:#83a3bb0e;color:#c1d2e0;border-radius:99px;padding:4px 7px;font-size:9px}.log-actions{display:flex;gap:5px;flex:none}.table-wrap{overflow:auto}.data-table{width:100%;border-collapse:collapse;min-width:540px}.data-table th,.data-table td{text-align:left;padding:10px 9px;border-bottom:1px solid #8ba2b21b;font-size:10px}.data-table th{color:var(--muted);font-weight:700}.data-table td{color:#dbe6f0}.chart-list{display:grid;gap:14px}.chart-row{display:grid;grid-template-columns:92px 1fr 65px;align-items:center;gap:10px}.chart-label{font-size:11px}.chart-track{height:12px;border-radius:99px;background:#26394d;overflow:hidden}.chart-track i{display:block;height:100%;background:linear-gradient(90deg,#239d7b,#70e8bb);border-radius:99px}.chart-value{text-align:right;font-size:10px;color:var(--muted)}.note{color:var(--muted);font-size:10px;line-height:1.7}.holiday-manager{display:grid;gap:8px}.holiday-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #819ab21c}.holiday-row:last-child{border-bottom:0}.holiday-row strong{font-size:11px;color:var(--orange)}.holiday-row span{font-size:11px;color:#dce7f0;flex:1}.toast{position:fixed;right:18px;bottom:18px;z-index:30;background:#18374a;border:1px solid #5bd9ad66;color:#effff8;padding:12px 15px;border-radius:12px;box-shadow:var(--shadow);font-size:12px;max-width:min(420px,calc(100% - 36px));opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateY(0)}.footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#7289a0;font-size:10px;padding:15px 3px 0}.hidden{display:none!important}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.app{width:calc(100% - 20px);padding-top:14px}.brand h1{font-size:15px}.live{font-size:10px}.timer-panel,.goal-panel,.content{padding:16px}.timer{gap:5px}.timebox{padding:12px 3px}.timebox .num{font-size:28px}.stats{gap:8px}.stat{padding:12px;min-height:106px}.stat .value{font-size:25px}.mini-grid{grid-template-columns:1fr 1fr 1fr}.mini .v{font-size:16px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.day{min-height:58px;padding:6px 5px}.day .tag{font-size:8px}.month-row{grid-template-columns:68px 1fr 65px;gap:7px}.calendar-grid{gap:4px}.weekday{font-size:9px}.calendar-title{font-size:15px}}
+@media print{body{background:#fff!important;color:#172331!important}.app{width:100%;padding:0}.topbar,.nav,.no-print,.footer{display:none!important}.view{display:none!important}.view.active{display:block!important}.panel{background:#fff!important;color:#172331!important;box-shadow:none;border:1px solid #ccd5dd;break-inside:avoid}.section-label,.heading small,.stat-top,.stat .sub,.note,.list-kind,.list-date,.chart-value,.month-count,.month-name,.holiday-row span,.holiday-row strong{color:#45596c!important}.stat .value,.heading h2,.log-card h3,.log-card p,.data-table td{color:#172331!important}.bar,.month-track,.chart-track{background:#e6ebef!important}.log-card{background:#fff!important;border-color:#ccd5dd}.log-card p{white-space:pre-wrap}}
+</style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <div class="brand"><div class="mark">⌛</div><div><div class="eyebrow">COUNTDOWN TRACKER · 2026—2027</div><h1>นับถอยหลังวันสิ้นสุดการฝึกงาน</h1></div></div>
-    <div class="live"><i class="dot"></i><span>LIVE · เวลาไทย</span><span id="nowText">กำลังอ่านเวลา…</span></div>
-  </header>
+<div class="app">
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">⌛</div><div><div class="eyebrow">INTERNSHIP TRACKER · 2026—2027</div><h1>ระบบติดตามการฝึกงาน</h1></div></div>
+  <div class="top-right"><div class="live"><i class="dot"></i><span>LIVE · เวลาไทย</span><strong id="nowText">—</strong></div><button class="btn small" id="fullscreenBtn" type="button">⛶ เต็มหน้าจอ</button></div>
+</header>
+<nav class="nav" aria-label="เมนูหลัก">
+  <button class="active" data-view="overview" type="button">▦ ภาพรวม</button>
+  <button data-view="calendar" type="button">▦ ปฏิทิน</button>
+  <button data-view="logs" type="button">✎ บันทึกงาน</button>
+  <button data-view="reports" type="button">▤ สถิติและรายงาน</button>
+</nav>
 
-  <section class="hero">
+<main>
+<section class="view active" id="view-overview">
+  <div class="hero">
     <div class="panel timer-panel">
       <div class="section-label">TIME LEFT UNTIL THE FINISH LINE</div>
-      <div class="target">ถึงกำหนด <strong>วันศุกร์ที่ 12 มีนาคม 2570 เวลา 16:00 น.</strong></div>
-      <div class="timer" aria-label="เวลานับถอยหลัง">
-        <div class="timebox"><div class="num" id="days">—</div><div class="unit">วัน</div></div>
-        <div class="timebox"><div class="num" id="hours">—</div><div class="unit">ชั่วโมง</div></div>
-        <div class="timebox"><div class="num" id="minutes">—</div><div class="unit">นาที</div></div>
-        <div class="timebox"><div class="num" id="seconds">—</div><div class="unit">วินาที</div></div>
-      </div>
-      <div class="timer-foot"><span id="statusText">คำนวณเวลาที่เหลือ…</span><span>ปลายทาง: 12 MAR 2027 · 16:00 ICT</span></div>
+      <div class="target">นับถอยหลังถึง <strong>วันศุกร์ที่ 12 มีนาคม 2570 เวลา 16:00 น.</strong></div>
+      <div class="timer" aria-label="เวลานับถอยหลัง"><div class="timebox"><div class="num" id="days">—</div><div class="unit">วัน</div></div><div class="timebox"><div class="num" id="hours">—</div><div class="unit">ชั่วโมง</div></div><div class="timebox"><div class="num" id="minutes">—</div><div class="unit">นาที</div></div><div class="timebox"><div class="num" id="seconds">—</div><div class="unit">วินาที</div></div></div>
+      <div class="timer-foot"><span id="countdownStatus">กำลังคำนวณเวลา…</span><span>ปลายทาง · 12 MAR 2027 · 16:00 ICT</span></div>
     </div>
     <div class="panel goal-panel">
-      <div>
-        <div class="goal-head"><span class="section-label">OVERALL TIMELINE</span><span class="pill">กำหนดการ</span></div>
-        <div class="goal-date">12 มีนาคม 2570<small>วันสิ้นสุด · 16:00 น.</small></div>
-      </div>
-      <div>
-        <div class="percent"><strong id="calendarPct">0.0%</strong><span>เวลาปฏิทินผ่านไป</span></div>
-        <div class="bar"><i id="calendarBar"></i></div>
-        <div class="goal-note">นับความคืบหน้าตั้งแต่ 16 พฤศจิกายน 2569 เวลา 00:00 น. จนถึงกำหนดสิ้นสุด</div>
-      </div>
+      <div><div class="heading"><span class="section-label">OVERALL TIMELINE</span><span class="pill">กำหนดการฝึกงาน</span></div><div class="goal-date">12 มีนาคม 2570<small>วันสิ้นสุด · 16:00 น.</small></div></div>
+      <div><div class="percent"><strong id="calendarPct">0.00%</strong><span>ความคืบหน้าตามเวลา</span></div><div class="bar"><i id="calendarBar"></i></div><div class="goal-note">เริ่มนับตั้งแต่ 16 พฤศจิกายน 2569 เวลา 08:00 น. · เวลาประเทศไทย (UTC+7)</div></div>
     </div>
-  </section>
-
-  <section class="stats">
-    <div class="panel stat"><div class="stat-top"><span>วันทำงานที่เหลือ</span><span class="icon">▣</span></div><div class="value" id="remainingDays">—</div><div class="sub">วันจันทร์–ศุกร์ หักวันหยุดราชการ</div></div>
-    <div class="panel stat"><div class="stat-top"><span>ชั่วโมงทำงานที่เหลือ</span><span class="icon">◷</span></div><div class="value" id="remainingHours">—</div><div class="sub">หักเวลาพักกลางวัน 1 ชั่วโมง/วัน</div></div>
-    <div class="panel stat"><div class="stat-top"><span>วันหยุดทั้งหมด</span><span class="icon">☼</span></div><div class="value" id="offDays">38</div><div class="sub">เสาร์–อาทิตย์ รวมวันหยุดราชการ</div></div>
-    <div class="panel stat"><div class="stat-top"><span>วันทั้งหมดในช่วง</span><span class="icon">▤</span></div><div class="value" id="totalDays">117</div><div class="sub">16 พ.ย. 2569 – 12 มี.ค. 2570</div></div>
-  </section>
-
-  <section class="grid">
+  </div>
+  <div class="stats">
+    <div class="panel stat"><div class="stat-top"><span>วันทำงานที่เหลือ</span><span class="icon">▣</span></div><div class="value" id="remainingDays">—</div><div class="sub">จันทร์–ศุกร์ หักวันหยุดแล้ว</div></div>
+    <div class="panel stat"><div class="stat-top"><span>ชั่วโมงทำงานที่เหลือ</span><span class="icon">◷</span></div><div class="value" id="remainingHours">—</div><div class="sub">สุทธิหลังหักพักกลางวัน</div></div>
+    <div class="panel stat"><div class="stat-top"><span>วันหยุดทั้งหมด</span><span class="icon">☼</span></div><div class="value" id="offDays">—</div><div class="sub">เสาร์–อาทิตย์ + วันหยุดราชการ</div></div>
+    <div class="panel stat"><div class="stat-top"><span>วันทั้งหมดในช่วง</span><span class="icon">▤</span></div><div class="value" id="totalDays">—</div><div class="sub">16 พ.ย. 2569 – 12 มี.ค. 2570</div></div>
+  </div>
+  <div class="two-col">
     <div class="panel content">
-      <div class="heading"><h2>สรุปเวลาทำงาน</h2><small>08:00–16:00 น. · พัก 12:00–13:00 น.</small></div>
-      <div class="hours-total"><span id="remainingHoursDetailed">553</span> <span>ชั่วโมงที่ต้องทำอีก</span></div>
-      <div class="progress-row">
-        <div class="progress-meta"><span>ชั่วโมงทำงานที่ผ่านไป</span><b id="workPct">1.3%</b></div>
-        <div class="bar"><i id="workBar"></i></div>
-      </div>
-      <div class="progress-row">
-        <div class="progress-meta"><span>สัดส่วนวันทำงานของทั้งช่วง</span><b id="workRatio">67.5%</b></div>
-        <div class="bar"><i id="ratioBar"></i></div>
-      </div>
-      <div class="legend"><span><i class="swatch"></i>วันทำงาน 79 วัน</span><span><i class="swatch off"></i>วันหยุด 38 วัน</span></div>
+      <div class="heading"><h2>สถานะวันนี้</h2><small id="todayDateLabel">เวลาไทย</small></div>
+      <div class="today-box"><div class="today-icon" id="todayIcon">◷</div><div><strong id="todayStatus">กำลังตรวจสอบสถานะ…</strong><span id="todaySub">—</span></div></div>
+      <div class="mini-grid"><div class="mini"><div class="k">เวลาทำงานวันนี้</div><div class="v" id="todayHours">—</div></div><div class="mini"><div class="k">เหลือในวันนี้</div><div class="v" id="todayRemaining">—</div></div><div class="mini"><div class="k">บันทึกวันนี้</div><div class="v" id="todayLogCount">0</div></div></div>
+      <div class="progress-item"><div class="progress-meta"><span>ความคืบหน้าชั่วโมงทำงาน</span><b id="workPct">0.00%</b></div><div class="bar"><i id="workBar"></i></div></div>
+      <div class="progress-item"><div class="progress-meta"><span>สัดส่วนวันทำงานต่อวันทั้งหมด</span><b id="workRatio">67.5%</b></div><div class="bar"><i id="ratioBar"></i></div></div>
+      <div class="toolbar no-print" style="margin-top:15px"><button class="btn primary" id="quickLogBtn" type="button">＋ บันทึกงานวันนี้</button><button class="btn" data-goto="calendar" type="button">เปิดปฏิทิน</button></div>
+    </div>
+    <div class="panel content"><div class="heading"><h2>ภาพรวมรายเดือน</h2><small>วันทำงาน / วันทั้งหมด</small></div><div class="month-bars" id="monthBars"></div><div class="legend"><span><i class="swatch"></i>วันทำงาน</span><span><i class="swatch off"></i>วันหยุด</span></div></div>
+  </div>
+  <div class="panel content"><div class="heading"><h2>บันทึกงานล่าสุด</h2><button class="btn small no-print" data-goto="logs" type="button">ดูบันทึกทั้งหมด →</button></div><div id="recentLogs" class="log-list"></div></div>
+</section>
+
+<section class="view" id="view-calendar">
+  <div class="panel content">
+    <div class="calendar-head"><div><div class="section-label">WORK SCHEDULE</div><div class="calendar-title" id="calendarTitle">พฤศจิกายน 2569</div></div><div class="toolbar no-print"><button class="btn" id="prevMonth" type="button">← ก่อนหน้า</button><button class="btn" id="todayMonth" type="button">เดือนปัจจุบัน</button><button class="btn" id="nextMonth" type="button">ถัดไป →</button></div></div>
+    <div class="calendar-grid" id="calendarGrid"></div>
+    <div class="calendar-legend"><span><i class="key"></i>วันทำงาน</span><span><i class="key weekend"></i>เสาร์–อาทิตย์</span><span><i class="key holiday"></i>วันหยุดราชการ</span><span><i class="key logged"></i>มีบันทึกงาน</span><span>กรอบสีน้ำเงิน = วันนี้</span></div>
+    <div class="selected-day"><div><strong id="selectedDateText">เลือกวันที่เพื่อดูรายละเอียด</strong><br><span id="selectedDateStatus">แตะวันที่บนปฏิทิน</span></div><button class="btn primary no-print" id="logSelectedBtn" type="button">＋ บันทึกงานวันนี้</button></div>
+  </div>
+  <div class="panel content" style="margin-top:14px"><div class="heading"><h2>วันหยุดราชการที่ใช้คำนวณ</h2><small>แก้ไขได้ตามประกาศของสถานที่ฝึกงาน</small></div><div class="holiday-manager" id="holidayList"></div><div class="no-print" style="margin-top:15px"><form id="holidayForm" class="form-grid"><div class="field"><label for="holidayDate">วันที่</label><input id="holidayDate" type="date" min="2026-11-16" max="2027-03-12" required></div><div class="field"><label for="holidayName">ชื่อวันหยุด</label><input id="holidayName" maxlength="100" placeholder="เช่น วันหยุดพิเศษของหน่วยงาน" required></div><div class="field full"><button class="btn primary" type="submit">＋ เพิ่มวันหยุดในปฏิทิน</button></div></form><p class="note">หากเพิ่มวันหยุดในวันจันทร์–ศุกร์ ระบบจะหักวันทำงานและชั่วโมงตามกำหนดการให้อัตโนมัติ การตั้งค่านี้บันทึกไว้ในเบราว์เซอร์เครื่องนี้</p></div></div>
+</section>
+
+<section class="view" id="view-logs">
+  <div class="two-col">
+    <div class="panel content">
+      <div class="heading"><h2 id="logFormTitle">เพิ่มบันทึกการทำงาน</h2><span class="pill">WORK LOG</span></div>
+      <form id="logForm" class="form-grid">
+        <input type="hidden" id="logId">
+        <div class="field"><label for="logDate">วันที่ทำงาน *</label><input type="date" id="logDate" min="2026-11-16" max="2027-03-12" required></div>
+        <div class="field"><label for="logCategory">หมวดหมู่งาน</label><select id="logCategory"><option>งานระบบเครือข่าย</option><option>พัฒนาเว็บไซต์</option><option>ฐานข้อมูล</option><option>งานเอกสาร</option><option>ซ่อมบำรุงอุปกรณ์</option><option>ประชุม / เรียนรู้งาน</option><option>อื่น ๆ</option></select></div>
+        <div class="field full"><label for="logTitle">หัวข้องาน *</label><input id="logTitle" maxlength="120" placeholder="เช่น ตั้งค่าเครือข่ายและตรวจสอบสาย LAN" required></div>
+        <div class="field full"><label for="logDetail">รายละเอียด / สิ่งที่ได้เรียนรู้</label><textarea id="logDetail" maxlength="2500" placeholder="อธิบายสิ่งที่ทำ ปัญหาที่พบ และผลลัพธ์ (ไม่ใส่ข้อมูลส่วนบุคคลหรือข้อมูลผู้ป่วย)"></textarea></div>
+        <div class="field"><label for="logHours">ชั่วโมงที่ใช้ (ชั่วโมง)</label><input type="number" id="logHours" min="0" max="24" step="0.25" value="0"></div>
+        <div class="field"><label for="logStatus">สถานะ</label><select id="logStatus"><option>เสร็จแล้ว</option><option>กำลังดำเนินการ</option><option>รอติดตาม</option></select></div>
+        <div class="field full"><div class="form-actions"><button class="btn primary" type="submit" id="saveLogBtn">บันทึกงาน</button><button class="btn hidden" type="button" id="cancelEditBtn">ยกเลิกการแก้ไข</button><button class="btn ghost" type="reset" id="resetLogBtn">ล้างแบบฟอร์ม</button></div></div>
+      </form>
+      <p class="note" style="margin-top:12px">บันทึกจะเก็บไว้ในเบราว์เซอร์ของเครื่องนี้ (Local Storage) ไม่ได้ส่งขึ้น GitHub หรือ Render และจะไม่ซิงก์ข้ามอุปกรณ์</p>
     </div>
     <div class="panel content">
-      <div class="heading"><h2>จำนวนวันแยกตามเดือน</h2><small>รวมวันหยุดในแต่ละเดือน</small></div>
-      <div class="month-list" id="monthList">
-        <div class="month-row"><span class="month-name">พ.ย. 2569</span><div class="month-track"><i class="work" style="width:73.33%"></i><i class="off" style="width:26.67%"></i></div><span class="month-count">11 / 15</span></div>
-        <div class="month-row"><span class="month-name">ธ.ค. 2569</span><div class="month-track"><i class="work" style="width:61%"></i><i class="off" style="width:39%"></i></div><span class="month-count">19 / 31</span></div>
-        <div class="month-row"><span class="month-name">ม.ค. 2570</span><div class="month-track"><i class="work" style="width:65%"></i><i class="off" style="width:35%"></i></div><span class="month-count">20 / 31</span></div>
-        <div class="month-row"><span class="month-name">ก.พ. 2570</span><div class="month-track"><i class="work" style="width:68%"></i><i class="off" style="width:32%"></i></div><span class="month-count">19 / 28</span></div>
-        <div class="month-row"><span class="month-name">มี.ค. 2570</span><div class="month-track"><i class="work" style="width:83%"></i><i class="off" style="width:17%"></i></div><span class="month-count">10 / 12</span></div>
-      </div>
+      <div class="heading"><h2>สรุปบันทึกงาน</h2><small>ข้อมูลที่บันทึกในเครื่องนี้</small></div>
+      <div class="mini-grid"><div class="mini"><div class="k">รายการทั้งหมด</div><div class="v" id="logTotal">0</div></div><div class="mini"><div class="k">ชั่วโมงที่บันทึก</div><div class="v" id="loggedHours">0</div></div><div class="mini"><div class="k">วันที่มีบันทึก</div><div class="v" id="loggedDates">0</div></div></div>
+      <div class="field" style="margin-top:16px"><label for="logSearch">ค้นหาบันทึก</label><input class="search" id="logSearch" type="search" placeholder="ค้นหาจากหัวข้อ รายละเอียด หรือหมวดหมู่"></div>
+      <div class="toolbar no-print" style="margin-top:14px"><button class="btn" id="exportCsvBtn" type="button">↓ Export CSV (Excel)</button><button class="btn" id="backupBtn" type="button">สำรองข้อมูล JSON</button></div>
+      <div class="toolbar no-print" style="margin-top:8px"><label class="btn" for="importFile" style="display:inline-flex;align-items:center">↑ นำเข้าข้อมูล JSON</label><input class="hidden" type="file" id="importFile" accept="application/json,.json"><button class="btn" id="printBtn" type="button">พิมพ์ / บันทึก PDF</button></div>
+      <p class="note" style="margin-top:12px">แนะนำให้สำรองข้อมูล JSON เป็นระยะ โดยเฉพาะก่อนเปลี่ยนเบราว์เซอร์ ล้างข้อมูลเว็บไซต์ หรือเปลี่ยนเครื่อง</p>
     </div>
-  </section>
+  </div>
+  <div class="panel content"><div class="heading"><h2>ประวัติการทำงาน</h2><small id="logResultCount">0 รายการ</small></div><div id="logList" class="log-list"></div></div>
+</section>
 
-  <section class="panel content">
-    <div class="heading"><h2>วันหยุดราชการที่หักออก</h2><small>รวม 6 วันในวันจันทร์–ศุกร์</small></div>
-    <div class="holidays">
-      <div class="holiday"><span class="date">7 ธ.ค. 2569</span><span class="name">วันหยุดชดเชยวันพ่อแห่งชาติ</span><span class="type">วันจันทร์</span></div>
-      <div class="holiday"><span class="date">10 ธ.ค. 2569</span><span class="name">วันรัฐธรรมนูญ</span><span class="type">วันพฤหัสบดี</span></div>
-      <div class="holiday"><span class="date">16 ธ.ค. 2569</span><span class="name">วันหยุดราชการกรณีพิเศษ</span><span class="type">วันพุธ</span></div>
-      <div class="holiday"><span class="date">31 ธ.ค. 2569</span><span class="name">วันสิ้นปี</span><span class="type">วันพฤหัสบดี</span></div>
-      <div class="holiday"><span class="date">1 ม.ค. 2570</span><span class="name">วันขึ้นปีใหม่</span><span class="type">วันศุกร์</span></div>
-      <div class="holiday"><span class="date">22 ก.พ. 2570</span><span class="name">วันหยุดชดเชยวันมาฆบูชา</span><span class="type">วันจันทร์</span></div>
-    </div>
-  </section>
-
-  <section class="panel footnote" style="margin-top:16px">
-    <strong>หลักเกณฑ์การคำนวณ:</strong> นับช่วง 16 พ.ย. 2569 ถึง 12 มี.ค. 2570 รวมวันต้นทางและวันปลายทางเป็น 117 วันปฏิทิน มีวันจันทร์–ศุกร์ 85 วัน หักวันหยุดราชการที่ตรงวันธรรมดา 6 วัน จึงเหลือวันทำงานตามปฏิทิน 79 วัน และวันหยุดรวม 38 วัน (เสาร์–อาทิตย์ 32 วัน + วันหยุดราชการ 6 วัน) คิดเวลาทำงานสุทธิ 7 ชั่วโมง/วัน โดยสมมติพักกลางวัน 12:00–13:00 น. ตัวเลขที่เหลือจะปรับตามเวลาจริงและไม่นับเวลาทำงานของวันที่ผ่านเวลา 16:00 น. แล้ว
-  </section>
-
-  <footer class="footer"><span>ทำงานแบบออฟไลน์ได้ · อัปเดตอัตโนมัติทุก 1 วินาที</span><div class="actions"><button class="btn" id="copyBtn">คัดลอกสรุป</button><button class="btn" id="fullBtn">เต็มหน้าจอ</button></div></footer>
+<section class="view" id="view-reports">
+  <div class="stats">
+    <div class="panel stat"><div class="stat-top"><span>วันทำงานตามแผน</span><span class="icon">▣</span></div><div class="value" id="reportWorkDays">79</div><div class="sub">ตลอดช่วงฝึกงาน</div></div>
+    <div class="panel stat"><div class="stat-top"><span>ชั่วโมงตามแผน</span><span class="icon">◷</span></div><div class="value" id="reportPlanHours">553</div><div class="sub">7 ชั่วโมงสุทธิ / วัน</div></div>
+    <div class="panel stat"><div class="stat-top"><span>ชั่วโมงที่บันทึก</span><span class="icon">◴</span></div><div class="value" id="reportLoggedHours">0</div><div class="sub">รวมจากแบบฟอร์มบันทึกงาน</div></div>
+    <div class="panel stat"><div class="stat-top"><span>รายการงานที่บันทึก</span><span class="icon">☷</span></div><div class="value" id="reportLogCount">0</div><div class="sub">รวมทุกสถานะ</div></div>
+  </div>
+  <div class="two-col">
+    <div class="panel content"><div class="heading"><h2>ชั่วโมงที่บันทึกแยกตามเดือน</h2><small>อ้างอิงชั่วโมงที่กรอกใน Work Log</small></div><div class="chart-list" id="hoursChart"></div><p class="note" style="margin-top:12px">กราฟนี้แสดงชั่วโมงที่กรอกเองในบันทึกงาน ไม่ใช่ชั่วโมงที่คำนวณจากเวลาที่เปิดเว็บไซต์</p></div>
+    <div class="panel content"><div class="heading"><h2>สรุปวันทำงานรายเดือน</h2><small>วันทำงาน / วันหยุด</small></div><div id="reportMonthTable" class="table-wrap"></div><div class="progress-item"><div class="progress-meta"><span>สัดส่วนวันทำงานทั้งช่วง</span><b id="reportWorkRatio">67.5%</b></div><div class="bar"><i id="reportRatioBar"></i></div></div></div>
+  </div>
+  <div class="panel content"><div class="heading"><h2>จัดการข้อมูลและส่งออกรายงาน</h2><small>ไม่ต้องใช้บริการเสริมหรือไลบรารีภายนอก</small></div><div class="toolbar no-print"><button class="btn primary" id="reportCsvBtn" type="button">↓ ดาวน์โหลด Excel (CSV)</button><button class="btn" id="reportJsonBtn" type="button">สำรองข้อมูลทั้งหมด (JSON)</button><button class="btn" id="reportPrintBtn" type="button">พิมพ์ / บันทึกเป็น PDF</button></div><p class="note" style="margin-top:13px">CSV เปิดด้วย Excel ได้ · PDF ใช้เมนู Print ของเบราว์เซอร์แล้วเลือก “Save as PDF” · JSON ใช้สำรองและย้ายข้อมูลไปยังเครื่องอื่น</p></div>
+  <div class="panel content" style="margin-top:14px"><div class="heading"><h2>วันหยุดที่ใช้ในการคำนวณ</h2><small>แก้ไขได้ในเมนูปฏิทิน</small></div><div id="reportHolidays" class="list"></div></div>
+</section>
+</main>
+<footer class="footer"><span>ทำงานแบบ Static Site · ไม่เรียก API · ไม่มีไลบรารีภายนอก</span><span>บันทึกงานอยู่ในเบราว์เซอร์เครื่องนี้ · เวลา Asia/Bangkok</span></footer>
 </div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
-(() => {
-  'use strict';
-  const TZ = 'Asia/Bangkok';
-  const START = new Date('2026-11-16T00:00:00+07:00');
-  const DEADLINE = new Date('2027-03-12T16:00:00+07:00');
-  const HOLIDAYS = {
-    '2026-12-07': 'วันหยุดชดเชยวันพ่อแห่งชาติ',
-    '2026-12-10': 'วันรัฐธรรมนูญ',
-    '2026-12-16': 'วันหยุดราชการกรณีพิเศษ',
-    '2026-12-31': 'วันสิ้นปี',
-    '2027-01-01': 'วันขึ้นปีใหม่',
-    '2027-02-22': 'วันหยุดชดเชยวันมาฆบูชา'
-  };
-  const MONTHS = [
-    {name:'พ.ย. 2569',start:'2026-11-16',end:'2026-11-30'},
-    {name:'ธ.ค. 2569',start:'2026-12-01',end:'2026-12-31'},
-    {name:'ม.ค. 2570',start:'2027-01-01',end:'2027-01-31'},
-    {name:'ก.พ. 2570',start:'2027-02-01',end:'2027-02-28'},
-    {name:'มี.ค. 2570',start:'2027-03-01',end:'2027-03-12'}
-  ];
-  const $ = id => document.getElementById(id);
-  const pad = n => String(n).padStart(2, '0');
-  const bangkokParts = (date) => {
-    const parts = new Intl.DateTimeFormat('en-GB', {
-      timeZone: TZ, year:'numeric', month:'2-digit', day:'2-digit',
-      hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23'
-    }).formatToParts(date);
-    return Object.fromEntries(parts.map(p => [p.type, p.value]));
-  };
-  const ymd = date => {
-    const p = bangkokParts(date);
-    return `${p.year}-${p.month}-${p.day}`;
-  };
-  const bangkokDateTime = (dateString, time) => new Date(`${dateString}T${time}:00+07:00`);
-  const dayNumber = dateString => new Date(`${dateString}T12:00:00Z`).getUTCDay();
-  const addDays = (dateString, n) => {
-    const d = new Date(`${dateString}T12:00:00Z`);
-    d.setUTCDate(d.getUTCDate() + n);
-    return `${d.getUTCFullYear()}-${pad(d.getUTCMonth()+1)}-${pad(d.getUTCDate())}`;
-  };
-  const dayIntervals = dateString => {
-    if (dayNumber(dateString) === 0 || dayNumber(dateString) === 6 || HOLIDAYS[dateString]) return [];
-    return [
-      [bangkokDateTime(dateString, '08:00').getTime(), bangkokDateTime(dateString, '12:00').getTime()],
-      [bangkokDateTime(dateString, '13:00').getTime(), bangkokDateTime(dateString, '16:00').getTime()]
-    ];
-  };
-  const getRemainingWorkMs = nowMs => {
-    let total = 0;
-    let dateString = ymd(new Date(nowMs));
-    const last = '2027-03-12';
-    while (dateString <= last) {
-      for (const [a,b] of dayIntervals(dateString)) {
-        const from = Math.max(a, nowMs);
-        const to = Math.min(b, DEADLINE.getTime());
-        if (to > from) total += to - from;
-      }
-      dateString = addDays(dateString, 1);
-    }
-    return Math.max(0, total);
-  };
-  const getRemainingWorkDays = nowMs => {
-    let count = 0;
-    let dateString = ymd(new Date(nowMs));
-    while (dateString <= '2027-03-12') {
-      const hasRemaining = dayIntervals(dateString).some(([a,b]) => Math.min(b, DEADLINE.getTime()) > Math.max(a, nowMs));
-      if (hasRemaining) count++;
-      dateString = addDays(dateString, 1);
-    }
-    return count;
-  };
-  const countPeriod = () => {
-    let work = 0, weekend = 0, publicHoliday = 0;
-    let cursor = '2026-11-16';
-    while (cursor <= '2027-03-12') {
-      const d = dayNumber(cursor);
-      if (d === 0 || d === 6) weekend++;
-      else if (HOLIDAYS[cursor]) publicHoliday++;
-      else work++;
-      cursor = addDays(cursor, 1);
-    }
-    return {work, weekend, publicHoliday, total:work+weekend+publicHoliday, off:weekend+publicHoliday};
-  };
-  const period = countPeriod();
-  const totalWorkMs = period.work * 7 * 60 * 60 * 1000;
-  const formatThaiNow = date => new Intl.DateTimeFormat('th-TH', {
-    timeZone:TZ, weekday:'short', day:'numeric', month:'short', year:'numeric',
-    hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23'
-  }).format(date);
-  const fmtHours = ms => {
-    const h = Math.floor(ms / 3600000);
-    const m = Math.floor((ms % 3600000) / 60000);
-    return `${h.toLocaleString('th-TH')}`;
-  };
-  function renderMonths() {
-    $('monthList').innerHTML = MONTHS.map(m => {
-      let work=0, off=0, cursor=m.start;
-      while(cursor<=m.end){
-        const wd=dayNumber(cursor);
-        if(wd===0||wd===6||HOLIDAYS[cursor]) off++; else work++;
-        cursor=addDays(cursor,1);
-      }
-      const total=work+off;
-      const wp=total?work/total*100:0;
-      const op=total?off/total*100:0;
-      return `<div class="month-row"><span class="month-name">${m.name}</span><div class="month-track" aria-label="วันทำงาน ${work} วัน วันหยุด ${off} วัน"><i class="work" style="width:${wp}%"></i><i class="off" style="width:${op}%"></i></div><span class="month-count">${work} / ${total}</span></div>`;
-    }).join('');
-  }
-  function update() {
-    const now = new Date();
-    const nowMs = now.getTime();
-    const diff = Math.max(0, DEADLINE.getTime() - nowMs);
-    const totalSeconds = Math.floor(diff/1000);
-    const d = Math.floor(totalSeconds/86400);
-    const h = Math.floor((totalSeconds%86400)/3600);
-    const m = Math.floor((totalSeconds%3600)/60);
-    const s = totalSeconds%60;
-    $('days').textContent = pad(d);
-    $('hours').textContent = pad(h);
-    $('minutes').textContent = pad(m);
-    $('seconds').textContent = pad(s);
-    $('nowText').textContent = formatThaiNow(now);
-    $('statusText').textContent = diff > 0 ? 'เวลายังเดินต่อ… ทุกวินาทีมีค่า' : 'ถึงเวลาสิ้นสุดตามกำหนดแล้ว';
-
-    const elapsed = Math.min(Math.max(nowMs-START.getTime(),0), DEADLINE.getTime()-START.getTime());
-    const calendarPct = (elapsed/(DEADLINE.getTime()-START.getTime()))*100;
-    $('calendarPct').textContent = `${calendarPct.toFixed(2)}%`;
-    $('calendarBar').style.width = `${calendarPct}%`;
-
-    const remWorkMs = getRemainingWorkMs(nowMs);
-    const remWorkDays = getRemainingWorkDays(nowMs);
-    const remainingHoursExact = remWorkMs/3600000;
-    const workDonePct = totalWorkMs ? (1-remWorkMs/totalWorkMs)*100 : 100;
-    $('remainingDays').textContent = remWorkDays.toLocaleString('th-TH');
-    $('remainingHours').textContent = Math.ceil(remainingHoursExact).toLocaleString('th-TH');
-    $('remainingHoursDetailed').textContent = `${Math.floor(remainingHoursExact).toLocaleString('th-TH')} ชม. ${Math.floor((remWorkMs%3600000)/60000)} นาที`;
-    $('workPct').textContent = `${Math.max(0,workDonePct).toFixed(2)}%`;
-    $('workBar').style.width = `${Math.min(100,Math.max(0,workDonePct))}%`;
-  }
-  $('offDays').textContent = period.off.toLocaleString('th-TH');
-  $('totalDays').textContent = period.total.toLocaleString('th-TH');
-  $('workRatio').textContent = `${(period.work/period.total*100).toFixed(1)}%`;
-  $('ratioBar').style.width = `${period.work/period.total*100}%`;
-  renderMonths();
-  update();
-  setInterval(update,1000);
-  $('copyBtn').addEventListener('click', async () => {
-    const now = new Date();
-    const text = `นับถอยหลังถึง 12 มีนาคม 2570 เวลา 16:00 น.\nเวลาปัจจุบัน: ${formatThaiNow(now)}\nวันทำงานที่เหลือ: ${$('remainingDays').textContent} วัน\nชั่วโมงทำงานที่เหลือ: ${$('remainingHoursDetailed').textContent}\nวันทำงานทั้งหมดในช่วง: ${period.work} วัน\nวันหยุดทั้งหมด: ${period.off} วัน\nวันทั้งหมด: ${period.total} วัน`;
-    try { await navigator.clipboard.writeText(text); $('copyBtn').textContent='คัดลอกแล้ว ✓'; setTimeout(()=>$('copyBtn').textContent='คัดลอกสรุป',1600); }
-    catch(e) { window.prompt('คัดลอกข้อความนี้',text); }
-  });
-  $('fullBtn').addEventListener('click', async () => {
-    try { if (!document.fullscreenElement) await document.documentElement.requestFullscreen(); else await document.exitFullscreen(); }
-    catch(e) { alert('เบราว์เซอร์นี้ไม่อนุญาตให้เปิดโหมดเต็มหน้าจอ'); }
-  });
+(()=>{
+'use strict';
+const START_DATE='2026-11-16',END_DATE='2027-03-12',START_AT='08:00',END_AT='16:00',TZ='Asia/Bangkok',STORE_KEY='internshipTracker.v2';
+const DEFAULT_HOLIDAYS=[
+ {date:'2026-12-07',name:'วันหยุดชดเชยวันพ่อแห่งชาติ'},
+ {date:'2026-12-10',name:'วันรัฐธรรมนูญ'},
+ {date:'2026-12-16',name:'วันหยุดราชการกรณีพิเศษ'},
+ {date:'2026-12-31',name:'วันสิ้นปี'},
+ {date:'2027-01-01',name:'วันขึ้นปีใหม่'},
+ {date:'2027-02-22',name:'วันหยุดชดเชยวันมาฆบูชา'}
+];
+const MONTHS=[
+ {name:'พฤศจิกายน 2569',short:'พ.ย. 2569',start:'2026-11-16',end:'2026-11-30',month:10,year:2026},
+ {name:'ธันวาคม 2569',short:'ธ.ค. 2569',start:'2026-12-01',end:'2026-12-31',month:11,year:2026},
+ {name:'มกราคม 2570',short:'ม.ค. 2570',start:'2027-01-01',end:'2027-01-31',month:0,year:2027},
+ {name:'กุมภาพันธ์ 2570',short:'ก.พ. 2570',start:'2027-02-01',end:'2027-02-28',month:1,year:2027},
+ {name:'มีนาคม 2570',short:'มี.ค. 2570',start:'2027-03-01',end:'2027-03-12',month:2,year:2027}
+];
+const $=id=>document.getElementById(id),pad=n=>String(n).padStart(2,'0');
+let state=loadState(),selectedCalendarDate=START_DATE,calendarIndex=0,toastTimer=null;
+function loadState(){try{const raw=localStorage.getItem(STORE_KEY);if(raw){const s=JSON.parse(raw);return{logs:Array.isArray(s.logs)?s.logs:[],holidays:Array.isArray(s.holidays)?s.holidays:DEFAULT_HOLIDAYS.slice()};}}catch(e){console.warn('อ่านข้อมูลเดิมไม่สำเร็จ',e);}return{logs:[
+ {id:'seed-20261116',date:'2026-11-16',category:'งานระบบเครือข่าย',title:'ต่อสาย LAN และเปลี่ยนหัวสาย',detail:'งานที่ดำเนินการในวันแรกของช่วงฝึกงาน',hours:0,status:'เสร็จแล้ว',createdAt:'2026-11-16T09:00:00+07:00'},
+ {id:'seed-20261117',date:'2026-11-17',category:'พัฒนาเว็บไซต์',title:'ทำหน้าเว็บสำหรับจัดเก็บประวัติผู้ป่วยเพื่อใช้งานร่วมกับฐานข้อมูลโรงพยาบาล',detail:'บันทึกหัวข้องานโดยไม่ใส่ข้อมูลส่วนบุคคลหรือข้อมูลผู้ป่วยจริง',hours:0,status:'กำลังดำเนินการ',createdAt:'2026-11-17T09:00:00+07:00'}
+],holidays:DEFAULT_HOLIDAYS.slice()};}
+function persist(){try{localStorage.setItem(STORE_KEY,JSON.stringify(state));return true;}catch(e){notify('บันทึกไม่สำเร็จ พื้นที่จัดเก็บอาจเต็ม กรุณาส่งออกข้อมูลสำรอง');return false;}}
+function notify(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2800);}
+function esc(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function bkkParts(date){const p=new Intl.DateTimeFormat('en-GB',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(date);return Object.fromEntries(p.map(x=>[x.type,x.value]));}
+function dateKey(date){const p=bkkParts(date);return `${p.year}-${p.month}-${p.day}`;}
+function nowBkk(){return bkkParts(new Date());}
+function parseBkk(key,time='00:00'){return new Date(`${key}T${time}:00+07:00`);}
+function dayNum(key){return new Date(`${key}T12:00:00Z`).getUTCDay();}
+function addDays(key,n){const d=new Date(`${key}T12:00:00Z`);d.setUTCDate(d.getUTCDate()+n);return `${d.getUTCFullYear()}-${pad(d.getUTCMonth()+1)}-${pad(d.getUTCDate())}`;}
+function inRange(key){return key>=START_DATE&&key<=END_DATE;}
+function holidayMap(){return new Map(state.holidays.map(h=>[h.date,h.name]));}
+function isWeekend(key){const n=dayNum(key);return n===0||n===6;}
+function isHoliday(key){return holidayMap().has(key)&&!isWeekend(key);}
+function isWorkday(key){return inRange(key)&&!isWeekend(key)&&!isHoliday(key);}
+function intervals(key){if(!isWorkday(key))return[];return[[parseBkk(key,'08:00').getTime(),parseBkk(key,'12:00').getTime()],[parseBkk(key,'13:00').getTime(),parseBkk(key,'16:00').getTime()]];}
+function eachDate(start=START_DATE,end=END_DATE,fn){let k=start;while(k<=end){fn(k);k=addDays(k,1);}}
+function calcPeriod(){let work=0,weekend=0,holidays=0;eachDate(START_DATE,END_DATE,k=>{if(isWeekend(k))weekend++;else if(isHoliday(k))holidays++;else work++;});return{work,weekend,holidays,off:weekend+holidays,total:work+weekend+holidays};}
+function remainingWorkMs(nowMs){let total=0;const start=dateKey(new Date(nowMs));if(start>END_DATE)return 0;eachDate(start,END_DATE,k=>intervals(k).forEach(([a,b])=>{const from=Math.max(a,nowMs),to=Math.min(b,parseBkk(END_DATE,END_AT).getTime());if(to>from)total+=to-from;}));return total;}
+function remainingWorkDays(nowMs){let n=0;const start=dateKey(new Date(nowMs));if(start>END_DATE)return 0;eachDate(start,END_DATE,k=>{if(intervals(k).some(([a,b])=>Math.min(b,parseBkk(END_DATE,END_AT).getTime())>Math.max(a,nowMs)))n++;});return n;}
+function elapsedWorkMs(nowMs){const fromDate=START_DATE,toDate=dateKey(new Date(Math.min(nowMs,parseBkk(END_DATE,END_AT).getTime())));let total=0;if(nowMs<=parseBkk(START_DATE,START_AT).getTime())return 0;eachDate(fromDate,toDate,k=>intervals(k).forEach(([a,b])=>{const from=Math.max(a,parseBkk(START_DATE,START_AT).getTime()),to=Math.min(b,nowMs);if(to>from)total+=to-from;}));return total;}
+function formatThaiDate(key,options={weekday:'short',day:'numeric',month:'short',year:'numeric'}){return new Intl.DateTimeFormat('th-TH',{timeZone:TZ,...options}).format(parseBkk(key,'12:00'));}
+function formatNow(date){return new Intl.DateTimeFormat('th-TH',{timeZone:TZ,weekday:'short',day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).format(date);}
+function niceHours(ms){const mins=Math.max(0,Math.floor(ms/60000)),h=Math.floor(mins/60),m=mins%60;return m?`${h.toLocaleString('th-TH')} ชม. ${m} นาที`:`${h.toLocaleString('th-TH')} ชม.`;}
+function number1(n){return (Math.round(n*10)/10).toLocaleString('th-TH',{maximumFractionDigits:1});}
+function monthFor(key){return MONTHS.find(m=>key>=m.start&&key<=m.end);}
+function logsFor(date){return state.logs.filter(l=>l.date===date);}
+function sortedLogs(){return state.logs.slice().sort((a,b)=>b.date.localeCompare(a.date)||(b.createdAt||'').localeCompare(a.createdAt||''));}
+function periodByMonth(m){let work=0,off=0;eachDate(m.start,m.end,k=>{if(isWorkday(k))work++;else off++;});return{work,off,total:work+off};}
+function monthLoggedHours(m){return state.logs.filter(l=>l.date>=m.start&&l.date<=m.end).reduce((a,l)=>a+(Number(l.hours)||0),0);}
+function sumLoggedHours(){return state.logs.reduce((a,l)=>a+(Number(l.hours)||0),0);}
+function renderMonthBars(){const html=MONTHS.map(m=>{const c=periodByMonth(m),wp=c.total?c.work/c.total*100:0,op=100-wp;return `<div class="month-row"><span class="month-name">${m.short}</span><div class="month-track" title="วันทำงาน ${c.work} วัน วันหยุด ${c.off} วัน"><i class="work" style="width:${wp}%"></i><i class="off" style="width:${op}%"></i></div><span class="month-count">${c.work} / ${c.total} วัน</span></div>`;}).join('');$('monthBars').innerHTML=html;}
+function updateToday(now,nowMs){const key=dateKey(now),p=nowBkk(),inPeriod=inRange(key),n=dayNum(key),holiday=holidayMap().get(key);$('todayDateLabel').textContent=formatThaiDate(key);$('todayLogCount').textContent=logsFor(key).length.toLocaleString('th-TH');let status,sub,icon,mins=0,remain=0;if(!inPeriod){status=key<START_DATE?'ยังไม่ถึงช่วงฝึกงาน':'สิ้นสุดช่วงฝึกงานแล้ว';sub='ช่วงเวลาที่ติดตามคือ 16 พ.ย. 2569 – 12 มี.ค. 2570';icon='⌛';}else if(n===0||n===6){status='วันหยุดสุดสัปดาห์';sub='วันนี้ไม่มีชั่วโมงทำงานตามปฏิทิน';icon='☼';}else if(holiday){status='วันหยุดราชการ';sub=holiday;icon='▣';}else{status='วันทำงาน';icon='◷';const ints=intervals(key);let elapsed=0;for(const [a,b] of ints){if(nowMs>=b)elapsed+=b-a;else if(nowMs>a)elapsed+=nowMs-a; if(nowMs<b)remain+=Math.max(0,b-Math.max(nowMs,a));}mins=elapsed/3600000;sub=nowMs<parseBkk(key,'08:00').getTime()?'เริ่มงานเวลา 08:00 น.':nowMs<parseBkk(key,'12:00').getTime()?'ช่วงเช้า · พักกลางวัน 12:00–13:00 น.':nowMs<parseBkk(key,'13:00').getTime()?'พักกลางวัน · เริ่มงานอีกครั้ง 13:00 น.':nowMs<parseBkk(key,'16:00').getTime()?'ช่วงบ่าย · เลิกงานเวลา 16:00 น.':'เลิกงานแล้วสำหรับวันนี้';}
+$('todayStatus').textContent=status;$('todaySub').textContent=sub;$('todayIcon').textContent=icon;$('todayHours').textContent=number1(mins)+' ชม.';$('todayRemaining').textContent=niceHours(remain);}
+function update(){const now=new Date(),nowMs=now.getTime(),deadline=parseBkk(END_DATE,END_AT).getTime(),start=parseBkk(START_DATE,START_AT).getTime(),diff=Math.max(0,deadline-nowMs),sec=Math.floor(diff/1000),p=calcPeriod(),rem=remainingWorkMs(nowMs),done=elapsedWorkMs(nowMs),total=p.work*7*3600000,calPct=Math.max(0,Math.min(100,(nowMs-start)/(deadline-start)*100)),workPct=total?Math.max(0,Math.min(100,done/total*100)):100;
+$('nowText').textContent=formatNow(now);$('days').textContent=String(Math.floor(sec/86400)).padStart(2,'0');$('hours').textContent=String(Math.floor(sec%86400/3600)).padStart(2,'0');$('minutes').textContent=String(Math.floor(sec%3600/60)).padStart(2,'0');$('seconds').textContent=String(sec%60).padStart(2,'0');$('countdownStatus').textContent=diff?'เวลายังเดินต่อ · อัปเดตทุกวินาที':'ถึงกำหนดสิ้นสุดแล้ว';$('calendarPct').textContent=calPct.toFixed(2)+'%';$('calendarBar').style.width=calPct+'%';$('remainingDays').textContent=remainingWorkDays(nowMs).toLocaleString('th-TH');$('remainingHours').textContent=niceHours(rem);$('offDays').textContent=p.off.toLocaleString('th-TH');$('totalDays').textContent=p.total.toLocaleString('th-TH');$('workPct').textContent=workPct.toFixed(2)+'%';$('workBar').style.width=workPct+'%';$('workRatio').textContent=(p.work/p.total*100).toFixed(1)+'%';$('ratioBar').style.width=(p.work/p.total*100)+'%';updateToday(now,nowMs);}
+function renderRecent(){const logs=sortedLogs().slice(0,4);$('recentLogs').innerHTML=logs.length?logs.map(logCard).join(''):'<div class="empty">ยังไม่มีบันทึกงาน</div>';}
+function logCard(l){return `<article class="log-card"><div class="log-card-top"><div><h3>${esc(l.title)}</h3><div class="log-meta"><span>${formatThaiDate(l.date,{day:'numeric',month:'short',year:'numeric'})}</span><span>· ${esc(l.category||'อื่น ๆ')}</span><span>· ${number1(Number(l.hours)||0)} ชม.</span><span class="tag-pill">${esc(l.status||'เสร็จแล้ว')}</span></div></div><div class="log-actions no-print"><button class="btn small" type="button" data-edit="${esc(l.id)}">แก้ไข</button><button class="btn small danger" type="button" data-delete="${esc(l.id)}">ลบ</button></div></div>${l.detail?`<p>${esc(l.detail)}</p>`:''}</article>`;}
+function renderLogs(){const q=$('logSearch').value.trim().toLocaleLowerCase();const list=sortedLogs().filter(l=>!q||[l.title,l.detail,l.category,l.status].join(' ').toLocaleLowerCase().includes(q));$('logList').innerHTML=list.length?list.map(logCard).join(''):'<div class="empty">ไม่พบบันทึกที่ตรงกับคำค้นหา</div>';$('logResultCount').textContent=`${list.length.toLocaleString('th-TH')} รายการ`;$('logTotal').textContent=state.logs.length.toLocaleString('th-TH');$('loggedHours').textContent=number1(sumLoggedHours());$('loggedDates').textContent=new Set(state.logs.map(l=>l.date)).size.toLocaleString('th-TH');}
+function renderHolidays(){const hs=state.holidays.slice().sort((a,b)=>a.date.localeCompare(b.date));$('holidayList').innerHTML=hs.map(h=>`<div class="holiday-row"><strong>${formatThaiDate(h.date,{day:'numeric',month:'short',year:'numeric'})}</strong><span>${esc(h.name)}</span><button type="button" class="btn small danger no-print" data-remove-holiday="${esc(h.date)}">ลบ</button></div>`).join('')||'<div class="empty">ไม่มีวันหยุดเพิ่มเติม</div>';$('reportHolidays').innerHTML=hs.map(h=>`<div class="list-row"><span class="list-date">${formatThaiDate(h.date,{day:'numeric',month:'short',year:'numeric'})}</span><span class="list-detail">${esc(h.name)}</span><span class="list-kind">${isWeekend(h.date)?'ตรงวันหยุดสุดสัปดาห์':'หักจากวันทำงาน'}</span></div>`).join('');}
+function renderReports(){const p=calcPeriod(),logs=state.logs.length,logged=sumLoggedHours();$('reportWorkDays').textContent=p.work;$('reportPlanHours').textContent=(p.work*7).toLocaleString('th-TH');$('reportLoggedHours').textContent=number1(logged);$('reportLogCount').textContent=logs.toLocaleString('th-TH');$('reportWorkRatio').textContent=(p.work/p.total*100).toFixed(1)+'%';$('reportRatioBar').style.width=(p.work/p.total*100)+'%';const vals=MONTHS.map(monthLoggedHours),max=Math.max(1,...vals);$('hoursChart').innerHTML=MONTHS.map((m,i)=>`<div class="chart-row"><span class="chart-label">${m.short}</span><div class="chart-track"><i style="width:${Math.max(0,vals[i]/max*100)}%"></i></div><span class="chart-value">${number1(vals[i])} ชม.</span></div>`).join('');$('reportMonthTable').innerHTML=`<table class="data-table"><thead><tr><th>เดือน</th><th>วันทำงาน</th><th>วันหยุด</th><th>ชั่วโมงตามแผน</th></tr></thead><tbody>${MONTHS.map(m=>{const c=periodByMonth(m);return `<tr><td>${m.short}</td><td>${c.work}</td><td>${c.off}</td><td>${c.work*7}</td></tr>`;}).join('')}<tr><td><strong>รวม</strong></td><td><strong>${p.work}</strong></td><td><strong>${p.off}</strong></td><td><strong>${p.work*7}</strong></td></tr></tbody></table>`;renderHolidays();}
+function renderAll(){const p=calcPeriod();renderMonthBars();renderRecent();renderLogs();renderReports();}
+function activateView(name){document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===name));document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));if(name==='calendar')renderCalendar();if(name==='logs')renderLogs();if(name==='reports')renderReports();window.scrollTo({top:0,behavior:'smooth'});}
+function calendarStatus(k){if(k<START_DATE||k>END_DATE)return{label:'นอกช่วง',cls:'other'};if(isWeekend(k))return{label:'วันหยุด',cls:'weekend'};if(isHoliday(k))return{label:'วันราชการ',cls:'holiday'};return{label:'วันทำงาน',cls:'workday'};}
+function renderCalendar(){const m=MONTHS[calendarIndex],first=new Date(Date.UTC(m.year,m.month,1)).getUTCDay(),days=new Date(Date.UTC(m.year,m.month+1,0)).getUTCDate(),offset=(first+6)%7; // Monday-first
+$('calendarTitle').textContent=m.name;const week=['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.'];let html=week.map(d=>`<div class="weekday">${d}</div>`).join('');for(let i=0;i<offset;i++)html+='<div class="day blank" aria-hidden="true"></div>';for(let d=1;d<=days;d++){const k=`${m.year}-${pad(m.month+1)}-${pad(d)}`,st=calendarStatus(k),today=k===dateKey(new Date()),selected=k===selectedCalendarDate,has=logsFor(k).length>0;html+=`<button type="button" class="day ${st.cls} ${today?'today':''} ${selected?'selected':''}" data-date="${k}" aria-label="${formatThaiDate(k)} ${st.label}"><span class="dnum">${d}</span><span class="tag">${has?'<i class="log-dot"></i>':''}${st.label}</span></button>`;}
+const cells=offset+days;for(let i=cells;i<Math.ceil(cells/7)*7;i++)html+='<div class="day blank" aria-hidden="true"></div>';$('calendarGrid').innerHTML=html;const st=calendarStatus(selectedCalendarDate),hol=holidayMap().get(selectedCalendarDate),logs=logsFor(selectedCalendarDate);$('selectedDateText').textContent=formatThaiDate(selectedCalendarDate,{weekday:'long',day:'numeric',month:'long',year:'numeric'});$('selectedDateStatus').textContent=(hol||st.label)+(logs.length?` · มีบันทึก ${logs.length} รายการ`:' · ไม่มีบันทึก');$('logSelectedBtn').disabled=!inRange(selectedCalendarDate);$('logSelectedBtn').style.opacity=inRange(selectedCalendarDate)?'1':'.5';}
+function resetLogForm(){ $('logId').value='';$('logDate').value=selectedCalendarDate&&inRange(selectedCalendarDate)?selectedCalendarDate:dateKey(new Date());$('logCategory').value='งานระบบเครือข่าย';$('logTitle').value='';$('logDetail').value='';$('logHours').value='0';$('logStatus').value='เสร็จแล้ว';$('logFormTitle').textContent='เพิ่มบันทึกการทำงาน';$('saveLogBtn').textContent='บันทึกงาน';$('cancelEditBtn').classList.add('hidden');}
+function editLog(id){const l=state.logs.find(x=>x.id===id);if(!l)return;$('logId').value=l.id;$('logDate').value=l.date;$('logCategory').value=l.category||'อื่น ๆ';$('logTitle').value=l.title;$('logDetail').value=l.detail||'';$('logHours').value=Number(l.hours)||0;$('logStatus').value=l.status||'เสร็จแล้ว';$('logFormTitle').textContent='แก้ไขบันทึกการทำงาน';$('saveLogBtn').textContent='บันทึกการแก้ไข';$('cancelEditBtn').classList.remove('hidden');activateView('logs');$('logTitle').focus();}
+function saveLog(e){e.preventDefault();const date=$('logDate').value,title=$('logTitle').value.trim(),hours=Number($('logHours').value);if(!inRange(date)){notify('เลือกวันที่ภายในช่วง 16 พ.ย. 2569 – 12 มี.ค. 2570');return;}if(!title){notify('กรุณากรอกหัวข้องาน');return;}if(!Number.isFinite(hours)||hours<0||hours>24){notify('กรุณากรอกชั่วโมงระหว่าง 0–24');return;}const id=$('logId').value,existing=state.logs.find(x=>x.id===id),entry={id:id||`log-${Date.now()}-${Math.random().toString(36).slice(2,8)}`,date,category:$('logCategory').value,title,detail:$('logDetail').value.trim(),hours,status:$('logStatus').value,createdAt:existing?.createdAt||new Date().toISOString()};if(existing)state.logs=state.logs.map(x=>x.id===id?entry:x);else state.logs.push(entry);persist();resetLogForm();renderAll();notify(existing?'แก้ไขบันทึกแล้ว':'เพิ่มบันทึกงานแล้ว');}
+function deleteLog(id){const l=state.logs.find(x=>x.id===id);if(!l)return;if(!confirm(`ต้องการลบบันทึก “${l.title}” ใช่หรือไม่?`))return;state.logs=state.logs.filter(x=>x.id!==id);persist();renderAll();notify('ลบบันทึกแล้ว');}
+function removeHoliday(date){const h=state.holidays.find(x=>x.date===date);if(!h)return;if(!confirm(`ต้องการลบวันหยุด ${formatThaiDate(date)} (${h.name}) ใช่หรือไม่?`))return;state.holidays=state.holidays.filter(x=>x.date!==date);persist();renderAll();renderCalendar();update();notify('ลบวันหยุดแล้ว คำนวณปฏิทินใหม่แล้ว');}
+function addHoliday(e){e.preventDefault();const date=$('holidayDate').value,name=$('holidayName').value.trim();if(!inRange(date)){notify('เลือกวันที่ภายในช่วงฝึกงาน');return;}if(!name){notify('กรุณาระบุชื่อวันหยุด');return;}if(state.holidays.some(h=>h.date===date)){notify('วันที่นี้มีอยู่ในรายการวันหยุดแล้ว');return;}state.holidays.push({date,name});state.holidays.sort((a,b)=>a.date.localeCompare(b.date));persist();$('holidayForm').reset();renderAll();renderCalendar();update();notify('เพิ่มวันหยุดและคำนวณใหม่แล้ว');}
+function csvCell(v){return '"'+String(v??'').replace(/"/g,'""')+'"';}
+function download(name,content,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
+function exportCsv(){const rows=[['วันที่','หัวข้องาน','หมวดหมู่','รายละเอียด','ชั่วโมง','สถานะ'],...sortedLogs().map(l=>[l.date,l.title,l.category,l.detail,Number(l.hours)||0,l.status])];const csv='\uFEFF'+rows.map(r=>r.map(csvCell).join(',')).join('\r\n');download('internship-work-log.csv',csv,'text/csv;charset=utf-8');notify('ส่งออก CSV สำหรับ Excel แล้ว');}
+function exportJson(){const payload={app:'Internship Tracker',version:2,exportedAt:new Date().toISOString(),period:{start:START_DATE,end:END_DATE},logs:state.logs,holidays:state.holidays};download('internship-tracker-backup.json',JSON.stringify(payload,null,2),'application/json');notify('ดาวน์โหลดไฟล์สำรอง JSON แล้ว');}
+function importJson(file){if(!file)return;if(file.size>5*1024*1024){notify('ไฟล์ใหญ่เกิน 5 MB');return;}const reader=new FileReader();reader.onload=()=>{try{const obj=JSON.parse(reader.result);if(!obj||!Array.isArray(obj.logs)||!Array.isArray(obj.holidays))throw new Error('รูปแบบไฟล์ไม่ถูกต้อง');const logs=obj.logs.filter(l=>l&&typeof l==='object'&&inRange(String(l.date||''))&&typeof l.title==='string').map(l=>({id:String(l.id||`import-${Date.now()}-${Math.random()}`),date:String(l.date),title:String(l.title).slice(0,120),detail:String(l.detail||'').slice(0,2500),category:String(l.category||'อื่น ๆ').slice(0,80),hours:Math.min(24,Math.max(0,Number(l.hours)||0)),status:String(l.status||'เสร็จแล้ว').slice(0,40),createdAt:String(l.createdAt||'')}));const holidays=obj.holidays.filter(h=>h&&inRange(String(h.date||''))&&typeof h.name==='string').map(h=>({date:String(h.date),name:String(h.name).slice(0,100)}));if(!confirm(`นำเข้าข้อมูล ${logs.length} รายการ และวันหยุด ${holidays.length} วัน? ข้อมูลปัจจุบันจะถูกแทนที่`))return;state={logs,holidays};persist();renderAll();renderCalendar();update();notify('นำเข้าข้อมูลสำเร็จ');}catch(e){notify('นำเข้าไม่สำเร็จ: ไฟล์ JSON ไม่ถูกต้อง');}};reader.onerror=()=>notify('อ่านไฟล์ไม่สำเร็จ');reader.readAsText(file);}
+function gotoLog(date){selectedCalendarDate=date;resetLogForm();$('logDate').value=date;activateView('logs');$('logTitle').focus();}
+// Navigation & actions
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>activateView(b.dataset.view)));document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>activateView(b.dataset.goto)));
+$('quickLogBtn').addEventListener('click',()=>gotoLog(dateKey(new Date())));$('logSelectedBtn').addEventListener('click',()=>{if(inRange(selectedCalendarDate))gotoLog(selectedCalendarDate);});$('calendarGrid').addEventListener('click',e=>{const b=e.target.closest('[data-date]');if(!b)return;selectedCalendarDate=b.dataset.date;renderCalendar();});
+$('prevMonth').addEventListener('click',()=>{calendarIndex=Math.max(0,calendarIndex-1);renderCalendar();});$('nextMonth').addEventListener('click',()=>{calendarIndex=Math.min(MONTHS.length-1,calendarIndex+1);renderCalendar();});$('todayMonth').addEventListener('click',()=>{const k=dateKey(new Date());const idx=MONTHS.findIndex(m=>k>=m.start&&k<=m.end);if(idx>=0)calendarIndex=idx;selectedCalendarDate=inRange(k)?k:START_DATE;renderCalendar();});
+$('logForm').addEventListener('submit',saveLog);$('cancelEditBtn').addEventListener('click',resetLogForm);$('resetLogBtn').addEventListener('click',()=>setTimeout(resetLogForm,0));$('logSearch').addEventListener('input',renderLogs);$('logList').addEventListener('click',e=>{const edit=e.target.closest('[data-edit]'),del=e.target.closest('[data-delete]');if(edit)editLog(edit.dataset.edit);if(del)deleteLog(del.dataset.delete);});$('recentLogs').addEventListener('click',e=>{const edit=e.target.closest('[data-edit]'),del=e.target.closest('[data-delete]');if(edit)editLog(edit.dataset.edit);if(del)deleteLog(del.dataset.delete);});
+$('holidayForm').addEventListener('submit',addHoliday);$('holidayList').addEventListener('click',e=>{const b=e.target.closest('[data-remove-holiday]');if(b)removeHoliday(b.dataset.removeHoliday);});
+['exportCsvBtn','reportCsvBtn'].forEach(id=>$(id).addEventListener('click',exportCsv));['backupBtn','reportJsonBtn'].forEach(id=>$(id).addEventListener('click',exportJson));['printBtn','reportPrintBtn'].forEach(id=>$(id).addEventListener('click',()=>window.print()));$('importFile').addEventListener('change',e=>{importJson(e.target.files?.[0]);e.target.value='';});
+$('fullscreenBtn').addEventListener('click',async()=>{try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen();}catch(e){notify('เบราว์เซอร์ไม่อนุญาตโหมดเต็มหน้าจอ');}});
+// Initialise using Bangkok time
+const todayKey=dateKey(new Date());selectedCalendarDate=inRange(todayKey)?todayKey:START_DATE;const todayMonthIndex=MONTHS.findIndex(m=>todayKey>=m.start&&todayKey<=m.end);if(todayMonthIndex>=0)calendarIndex=todayMonthIndex;resetLogForm();renderAll();renderCalendar();update();setInterval(update,1000);
 })();
 </script>
 </body>
