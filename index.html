@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>Live Countdown · 12 มีนาคม 2570</title>
+  <style>
+    :root{--bg:#08111f;--panel:#101c2d;--panel2:#132238;--line:#24354b;--muted:#91a3ba;--text:#edf4fb;--green:#62e6b1;--blue:#6db9ff;--orange:#ffbd69;--red:#ff7f88;--shadow:0 18px 50px rgba(0,0,0,.22)}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(ellipse at 15% -15%,rgba(40,111,118,.23),transparent 42%),radial-gradient(ellipse at 100% 0%,rgba(47,90,158,.18),transparent 38%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,"Noto Sans Thai",sans-serif;min-height:100vh}
+    .wrap{width:min(1180px,calc(100% - 34px));margin:0 auto;padding:28px 0 42px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px}.mark{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#1b9a7a,#4c9be8);display:grid;place-items:center;font-size:20px;box-shadow:0 8px 24px rgba(41,187,149,.22)}
+    .eyebrow{color:var(--green);font-size:11px;letter-spacing:2px;font-weight:800}.brand h1{font-size:18px;margin:2px 0 0;letter-spacing:.2px}
+    .live{display:flex;align-items:center;gap:8px;color:#b8c8d9;font-size:12px;background:rgba(16,28,45,.8);border:1px solid var(--line);padding:9px 12px;border-radius:999px}.dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 0 5px rgba(98,230,177,.1)}
+    .hero{display:grid;grid-template-columns:1.4fr .8fr;gap:16px;margin-bottom:16px}
+    .panel{background:linear-gradient(145deg,rgba(19,34,56,.96),rgba(13,25,42,.96));border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
+    .timer-panel{padding:26px 28px;position:relative;overflow:hidden}.timer-panel:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-100px;top:-115px;border:1px solid rgba(98,230,177,.12);box-shadow:0 0 0 28px rgba(98,230,177,.025),0 0 0 58px rgba(98,230,177,.02);pointer-events:none}
+    .section-label{font-size:11px;color:var(--muted);font-weight:800;letter-spacing:1.7px;text-transform:uppercase}.target{font-size:14px;margin-top:7px;color:#dce8f4}.target strong{color:var(--green);font-weight:750}
+    .timer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:26px 0 18px;max-width:700px;position:relative;z-index:1}
+    .timebox{background:rgba(5,13,24,.48);border:1px solid rgba(134,164,198,.16);border-radius:14px;padding:16px 8px 13px;text-align:center}.timebox .num{font-size:clamp(28px,5vw,48px);font-weight:800;line-height:1.1;letter-spacing:-1.5px;font-variant-numeric:tabular-nums}.timebox .unit{color:var(--muted);font-size:11px;margin-top:7px;letter-spacing:1px}
+    .timer-foot{color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+    .goal-panel{padding:23px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}.goal-head{display:flex;justify-content:space-between;gap:10px;align-items:center}.pill{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--green);border:1px solid rgba(98,230,177,.28);background:rgba(98,230,177,.08);padding:6px 9px;border-radius:999px}.goal-date{font-size:29px;font-weight:800;line-height:1.2;margin-top:14px}.goal-date small{display:block;color:var(--muted);font-size:13px;font-weight:500;margin-top:7px}.percent{display:flex;align-items:end;justify-content:space-between;gap:8px;margin-bottom:9px}.percent strong{font-size:27px;font-variant-numeric:tabular-nums}.percent span{color:var(--muted);font-size:11px}.bar{height:9px;background:#26374b;border-radius:99px;overflow:hidden}.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#28b88f,#8ce9c4);border-radius:99px;transition:width .25s}.goal-note{color:var(--muted);font-size:11px;line-height:1.6;margin-top:10px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}.stat{padding:18px 19px;min-height:125px}.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px}.icon{width:31px;height:31px;display:grid;place-items:center;border-radius:10px;background:rgba(109,185,255,.1);color:var(--blue);font-size:15px}.stat:nth-child(2) .icon{background:rgba(98,230,177,.1);color:var(--green)}.stat:nth-child(3) .icon{background:rgba(255,189,105,.1);color:var(--orange)}.stat:nth-child(4) .icon{background:rgba(255,127,136,.1);color:var(--red)}
+    .stat .value{font-size:31px;font-weight:800;letter-spacing:-.8px;margin-top:9px;font-variant-numeric:tabular-nums}.stat .sub{font-size:11px;color:var(--muted);margin-top:2px}
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:16px;margin-bottom:16px}.content{padding:22px}.heading{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:16px}.heading h2{font-size:15px;margin:0}.heading small{color:var(--muted);font-size:11px}
+    .hours-total{font-size:32px;font-weight:800;letter-spacing:-1px}.hours-total span{font-size:13px;color:var(--muted);font-weight:500;letter-spacing:0}.progress-row{margin-top:17px}.progress-meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:11px;margin-bottom:8px}.progress-meta b{color:#e8f2fc;font-weight:700}.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;color:var(--muted);font-size:11px}.legend span{display:flex;align-items:center;gap:7px}.swatch{width:8px;height:8px;border-radius:3px;background:var(--green)}.swatch.off{background:var(--orange)}
+    .month-list{display:grid;gap:12px}.month-row{display:grid;grid-template-columns:92px 1fr 55px;gap:12px;align-items:center}.month-name{font-size:12px;color:#dfe9f4}.month-track{height:8px;background:#25354a;border-radius:99px;overflow:hidden;display:flex}.month-track .work{background:linear-gradient(90deg,#25a982,#66dfb0);height:100%}.month-track .off{background:#e4a752;height:100%}.month-count{text-align:right;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+    .holidays{display:grid;gap:0}.holiday{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid rgba(130,155,184,.12)}.holiday:last-child{border-bottom:0;padding-bottom:0}.holiday .date{min-width:94px;color:var(--orange);font-weight:750;font-size:12px}.holiday .name{font-size:12px;color:#dbe6f1;flex:1}.holiday .type{font-size:10px;color:var(--muted);white-space:nowrap}
+    .footnote{padding:15px 18px;color:var(--muted);font-size:11px;line-height:1.75}.footnote strong{color:#dce8f4}.footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#71849c;font-size:10px;padding:3px 4px}.actions{display:flex;gap:8px}.btn{border:1px solid var(--line);background:#122238;color:#cfe0ef;padding:8px 11px;border-radius:9px;font-size:11px;cursor:pointer}.btn:hover{border-color:#4d789b;background:#172b44}
+    @media(max-width:800px){.hero,.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:480px){.wrap{width:calc(100% - 22px);padding-top:16px}.timer-panel,.goal-panel,.content{padding:18px}.timer{gap:6px;margin:20px 0 15px}.timebox{padding:13px 4px 11px}.timebox .num{font-size:29px}.stats{gap:9px}.stat{padding:14px;min-height:112px}.stat .value{font-size:26px}.month-row{grid-template-columns:74px 1fr 45px;gap:8px}.holiday .date{min-width:84px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="mark">⌛</div><div><div class="eyebrow">COUNTDOWN TRACKER · 2026—2027</div><h1>นับถอยหลังวันสิ้นสุดการฝึกงาน</h1></div></div>
+    <div class="live"><i class="dot"></i><span>LIVE · เวลาไทย</span><span id="nowText">กำลังอ่านเวลา…</span></div>
+  </header>
+
+  <section class="hero">
+    <div class="panel timer-panel">
+      <div class="section-label">TIME LEFT UNTIL THE FINISH LINE</div>
+      <div class="target">ถึงกำหนด <strong>วันศุกร์ที่ 12 มีนาคม 2570 เวลา 16:00 น.</strong></div>
+      <div class="timer" aria-label="เวลานับถอยหลัง">
+        <div class="timebox"><div class="num" id="days">—</div><div class="unit">วัน</div></div>
+        <div class="timebox"><div class="num" id="hours">—</div><div class="unit">ชั่วโมง</div></div>
+        <div class="timebox"><div class="num" id="minutes">—</div><div class="unit">นาที</div></div>
+        <div class="timebox"><div class="num" id="seconds">—</div><div class="unit">วินาที</div></div>
+      </div>
+      <div class="timer-foot"><span id="statusText">คำนวณเวลาที่เหลือ…</span><span>ปลายทาง: 12 MAR 2027 · 16:00 ICT</span></div>
+    </div>
+    <div class="panel goal-panel">
+      <div>
+        <div class="goal-head"><span class="section-label">OVERALL TIMELINE</span><span class="pill">กำหนดการ</span></div>
+        <div class="goal-date">12 มีนาคม 2570<small>วันสิ้นสุด · 16:00 น.</small></div>
+      </div>
+      <div>
+        <div class="percent"><strong id="calendarPct">0.0%</strong><span>เวลาปฏิทินผ่านไป</span></div>
+        <div class="bar"><i id="calendarBar"></i></div>
+        <div class="goal-note">นับความคืบหน้าตั้งแต่ 16 พฤศจิกายน 2569 เวลา 00:00 น. จนถึงกำหนดสิ้นสุด</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="panel stat"><div class="stat-top"><span>วันทำงานที่เหลือ</span><span class="icon">▣</span></div><div class="value" id="remainingDays">—</div><div class="sub">วันจันทร์–ศุกร์ หักวันหยุดราชการ</div></div>
+    <div class="panel stat"><div class="stat-top"><span>ชั่วโมงทำงานที่เหลือ</span><span class="icon">◷</span></div><div class="value" id="remainingHours">—</div><div class="sub">หักเวลาพักกลางวัน 1 ชั่วโมง/วัน</div></div>
+    <div class="panel stat"><div class="stat-top"><span>วันหยุดทั้งหมด</span><span class="icon">☼</span></div><div class="value" id="offDays">38</div><div class="sub">เสาร์–อาทิตย์ รวมวันหยุดราชการ</div></div>
+    <div class="panel stat"><div class="stat-top"><span>วันทั้งหมดในช่วง</span><span class="icon">▤</span></div><div class="value" id="totalDays">117</div><div class="sub">16 พ.ย. 2569 – 12 มี.ค. 2570</div></div>
+  </section>
+
+  <section class="grid">
+    <div class="panel content">
+      <div class="heading"><h2>สรุปเวลาทำงาน</h2><small>08:00–16:00 น. · พัก 12:00–13:00 น.</small></div>
+      <div class="hours-total"><span id="remainingHoursDetailed">553</span> <span>ชั่วโมงที่ต้องทำอีก</span></div>
+      <div class="progress-row">
+        <div class="progress-meta"><span>ชั่วโมงทำงานที่ผ่านไป</span><b id="workPct">1.3%</b></div>
+        <div class="bar"><i id="workBar"></i></div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-meta"><span>สัดส่วนวันทำงานของทั้งช่วง</span><b id="workRatio">67.5%</b></div>
+        <div class="bar"><i id="ratioBar"></i></div>
+      </div>
+      <div class="legend"><span><i class="swatch"></i>วันทำงาน 79 วัน</span><span><i class="swatch off"></i>วันหยุด 38 วัน</span></div>
+    </div>
+    <div class="panel content">
+      <div class="heading"><h2>จำนวนวันแยกตามเดือน</h2><small>รวมวันหยุดในแต่ละเดือน</small></div>
+      <div class="month-list" id="monthList">
+        <div class="month-row"><span class="month-name">พ.ย. 2569</span><div class="month-track"><i class="work" style="width:73.33%"></i><i class="off" style="width:26.67%"></i></div><span class="month-count">11 / 15</span></div>
+        <div class="month-row"><span class="month-name">ธ.ค. 2569</span><div class="month-track"><i class="work" style="width:61%"></i><i class="off" style="width:39%"></i></div><span class="month-count">19 / 31</span></div>
+        <div class="month-row"><span class="month-name">ม.ค. 2570</span><div class="month-track"><i class="work" style="width:65%"></i><i class="off" style="width:35%"></i></div><span class="month-count">20 / 31</span></div>
+        <div class="month-row"><span class="month-name">ก.พ. 2570</span><div class="month-track"><i class="work" style="width:68%"></i><i class="off" style="width:32%"></i></div><span class="month-count">19 / 28</span></div>
+        <div class="month-row"><span class="month-name">มี.ค. 2570</span><div class="month-track"><i class="work" style="width:83%"></i><i class="off" style="width:17%"></i></div><span class="month-count">10 / 12</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel content">
+    <div class="heading"><h2>วันหยุดราชการที่หักออก</h2><small>รวม 6 วันในวันจันทร์–ศุกร์</small></div>
+    <div class="holidays">
+      <div class="holiday"><span class="date">7 ธ.ค. 2569</span><span class="name">วันหยุดชดเชยวันพ่อแห่งชาติ</span><span class="type">วันจันทร์</span></div>
+      <div class="holiday"><span class="date">10 ธ.ค. 2569</span><span class="name">วันรัฐธรรมนูญ</span><span class="type">วันพฤหัสบดี</span></div>
+      <div class="holiday"><span class="date">16 ธ.ค. 2569</span><span class="name">วันหยุดราชการกรณีพิเศษ</span><span class="type">วันพุธ</span></div>
+      <div class="holiday"><span class="date">31 ธ.ค. 2569</span><span class="name">วันสิ้นปี</span><span class="type">วันพฤหัสบดี</span></div>
+      <div class="holiday"><span class="date">1 ม.ค. 2570</span><span class="name">วันขึ้นปีใหม่</span><span class="type">วันศุกร์</span></div>
+      <div class="holiday"><span class="date">22 ก.พ. 2570</span><span class="name">วันหยุดชดเชยวันมาฆบูชา</span><span class="type">วันจันทร์</span></div>
+    </div>
+  </section>
+
+  <section class="panel footnote" style="margin-top:16px">
+    <strong>หลักเกณฑ์การคำนวณ:</strong> นับช่วง 16 พ.ย. 2569 ถึง 12 มี.ค. 2570 รวมวันต้นทางและวันปลายทางเป็น 117 วันปฏิทิน มีวันจันทร์–ศุกร์ 85 วัน หักวันหยุดราชการที่ตรงวันธรรมดา 6 วัน จึงเหลือวันทำงานตามปฏิทิน 79 วัน และวันหยุดรวม 38 วัน (เสาร์–อาทิตย์ 32 วัน + วันหยุดราชการ 6 วัน) คิดเวลาทำงานสุทธิ 7 ชั่วโมง/วัน โดยสมมติพักกลางวัน 12:00–13:00 น. ตัวเลขที่เหลือจะปรับตามเวลาจริงและไม่นับเวลาทำงานของวันที่ผ่านเวลา 16:00 น. แล้ว
+  </section>
+
+  <footer class="footer"><span>ทำงานแบบออฟไลน์ได้ · อัปเดตอัตโนมัติทุก 1 วินาที</span><div class="actions"><button class="btn" id="copyBtn">คัดลอกสรุป</button><button class="btn" id="fullBtn">เต็มหน้าจอ</button></div></footer>
+</div>
+<script>
+(() => {
+  'use strict';
+  const TZ = 'Asia/Bangkok';
+  const START = new Date('2026-11-16T00:00:00+07:00');
+  const DEADLINE = new Date('2027-03-12T16:00:00+07:00');
+  const HOLIDAYS = {
+    '2026-12-07': 'วันหยุดชดเชยวันพ่อแห่งชาติ',
+    '2026-12-10': 'วันรัฐธรรมนูญ',
+    '2026-12-16': 'วันหยุดราชการกรณีพิเศษ',
+    '2026-12-31': 'วันสิ้นปี',
+    '2027-01-01': 'วันขึ้นปีใหม่',
+    '2027-02-22': 'วันหยุดชดเชยวันมาฆบูชา'
+  };
+  const MONTHS = [
+    {name:'พ.ย. 2569',start:'2026-11-16',end:'2026-11-30'},
+    {name:'ธ.ค. 2569',start:'2026-12-01',end:'2026-12-31'},
+    {name:'ม.ค. 2570',start:'2027-01-01',end:'2027-01-31'},
+    {name:'ก.พ. 2570',start:'2027-02-01',end:'2027-02-28'},
+    {name:'มี.ค. 2570',start:'2027-03-01',end:'2027-03-12'}
+  ];
+  const $ = id => document.getElementById(id);
+  const pad = n => String(n).padStart(2, '0');
+  const bangkokParts = (date) => {
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: TZ, year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23'
+    }).formatToParts(date);
+    return Object.fromEntries(parts.map(p => [p.type, p.value]));
+  };
+  const ymd = date => {
+    const p = bangkokParts(date);
+    return `${p.year}-${p.month}-${p.day}`;
+  };
+  const bangkokDateTime = (dateString, time) => new Date(`${dateString}T${time}:00+07:00`);
+  const dayNumber = dateString => new Date(`${dateString}T12:00:00Z`).getUTCDay();
+  const addDays = (dateString, n) => {
+    const d = new Date(`${dateString}T12:00:00Z`);
+    d.setUTCDate(d.getUTCDate() + n);
+    return `${d.getUTCFullYear()}-${pad(d.getUTCMonth()+1)}-${pad(d.getUTCDate())}`;
+  };
+  const dayIntervals = dateString => {
+    if (dayNumber(dateString) === 0 || dayNumber(dateString) === 6 || HOLIDAYS[dateString]) return [];
+    return [
+      [bangkokDateTime(dateString, '08:00').getTime(), bangkokDateTime(dateString, '12:00').getTime()],
+      [bangkokDateTime(dateString, '13:00').getTime(), bangkokDateTime(dateString, '16:00').getTime()]
+    ];
+  };
+  const getRemainingWorkMs = nowMs => {
+    let total = 0;
+    let dateString = ymd(new Date(nowMs));
+    const last = '2027-03-12';
+    while (dateString <= last) {
+      for (const [a,b] of dayIntervals(dateString)) {
+        const from = Math.max(a, nowMs);
+        const to = Math.min(b, DEADLINE.getTime());
+        if (to > from) total += to - from;
+      }
+      dateString = addDays(dateString, 1);
+    }
+    return Math.max(0, total);
+  };
+  const getRemainingWorkDays = nowMs => {
+    let count = 0;
+    let dateString = ymd(new Date(nowMs));
+    while (dateString <= '2027-03-12') {
+      const hasRemaining = dayIntervals(dateString).some(([a,b]) => Math.min(b, DEADLINE.getTime()) > Math.max(a, nowMs));
+      if (hasRemaining) count++;
+      dateString = addDays(dateString, 1);
+    }
+    return count;
+  };
+  const countPeriod = () => {
+    let work = 0, weekend = 0, publicHoliday = 0;
+    let cursor = '2026-11-16';
+    while (cursor <= '2027-03-12') {
+      const d = dayNumber(cursor);
+      if (d === 0 || d === 6) weekend++;
+      else if (HOLIDAYS[cursor]) publicHoliday++;
+      else work++;
+      cursor = addDays(cursor, 1);
+    }
+    return {work, weekend, publicHoliday, total:work+weekend+publicHoliday, off:weekend+publicHoliday};
+  };
+  const period = countPeriod();
+  const totalWorkMs = period.work * 7 * 60 * 60 * 1000;
+  const formatThaiNow = date => new Intl.DateTimeFormat('th-TH', {
+    timeZone:TZ, weekday:'short', day:'numeric', month:'short', year:'numeric',
+    hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23'
+  }).format(date);
+  const fmtHours = ms => {
+    const h = Math.floor(ms / 3600000);
+    const m = Math.floor((ms % 3600000) / 60000);
+    return `${h.toLocaleString('th-TH')}`;
+  };
+  function renderMonths() {
+    $('monthList').innerHTML = MONTHS.map(m => {
+      let work=0, off=0, cursor=m.start;
+      while(cursor<=m.end){
+        const wd=dayNumber(cursor);
+        if(wd===0||wd===6||HOLIDAYS[cursor]) off++; else work++;
+        cursor=addDays(cursor,1);
+      }
+      const total=work+off;
+      const wp=total?work/total*100:0;
+      const op=total?off/total*100:0;
+      return `<div class="month-row"><span class="month-name">${m.name}</span><div class="month-track" aria-label="วันทำงาน ${work} วัน วันหยุด ${off} วัน"><i class="work" style="width:${wp}%"></i><i class="off" style="width:${op}%"></i></div><span class="month-count">${work} / ${total}</span></div>`;
+    }).join('');
+  }
+  function update() {
+    const now = new Date();
+    const nowMs = now.getTime();
+    const diff = Math.max(0, DEADLINE.getTime() - nowMs);
+    const totalSeconds = Math.floor(diff/1000);
+    const d = Math.floor(totalSeconds/86400);
+    const h = Math.floor((totalSeconds%86400)/3600);
+    const m = Math.floor((totalSeconds%3600)/60);
+    const s = totalSeconds%60;
+    $('days').textContent = pad(d);
+    $('hours').textContent = pad(h);
+    $('minutes').textContent = pad(m);
+    $('seconds').textContent = pad(s);
+    $('nowText').textContent = formatThaiNow(now);
+    $('statusText').textContent = diff > 0 ? 'เวลายังเดินต่อ… ทุกวินาทีมีค่า' : 'ถึงเวลาสิ้นสุดตามกำหนดแล้ว';
+
+    const elapsed = Math.min(Math.max(nowMs-START.getTime(),0), DEADLINE.getTime()-START.getTime());
+    const calendarPct = (elapsed/(DEADLINE.getTime()-START.getTime()))*100;
+    $('calendarPct').textContent = `${calendarPct.toFixed(2)}%`;
+    $('calendarBar').style.width = `${calendarPct}%`;
+
+    const remWorkMs = getRemainingWorkMs(nowMs);
+    const remWorkDays = getRemainingWorkDays(nowMs);
+    const remainingHoursExact = remWorkMs/3600000;
+    const workDonePct = totalWorkMs ? (1-remWorkMs/totalWorkMs)*100 : 100;
+    $('remainingDays').textContent = remWorkDays.toLocaleString('th-TH');
+    $('remainingHours').textContent = Math.ceil(remainingHoursExact).toLocaleString('th-TH');
+    $('remainingHoursDetailed').textContent = `${Math.floor(remainingHoursExact).toLocaleString('th-TH')} ชม. ${Math.floor((remWorkMs%3600000)/60000)} นาที`;
+    $('workPct').textContent = `${Math.max(0,workDonePct).toFixed(2)}%`;
+    $('workBar').style.width = `${Math.min(100,Math.max(0,workDonePct))}%`;
+  }
+  $('offDays').textContent = period.off.toLocaleString('th-TH');
+  $('totalDays').textContent = period.total.toLocaleString('th-TH');
+  $('workRatio').textContent = `${(period.work/period.total*100).toFixed(1)}%`;
+  $('ratioBar').style.width = `${period.work/period.total*100}%`;
+  renderMonths();
+  update();
+  setInterval(update,1000);
+  $('copyBtn').addEventListener('click', async () => {
+    const now = new Date();
+    const text = `นับถอยหลังถึง 12 มีนาคม 2570 เวลา 16:00 น.\nเวลาปัจจุบัน: ${formatThaiNow(now)}\nวันทำงานที่เหลือ: ${$('remainingDays').textContent} วัน\nชั่วโมงทำงานที่เหลือ: ${$('remainingHoursDetailed').textContent}\nวันทำงานทั้งหมดในช่วง: ${period.work} วัน\nวันหยุดทั้งหมด: ${period.off} วัน\nวันทั้งหมด: ${period.total} วัน`;
+    try { await navigator.clipboard.writeText(text); $('copyBtn').textContent='คัดลอกแล้ว ✓'; setTimeout(()=>$('copyBtn').textContent='คัดลอกสรุป',1600); }
+    catch(e) { window.prompt('คัดลอกข้อความนี้',text); }
+  });
+  $('fullBtn').addEventListener('click', async () => {
+    try { if (!document.fullscreenElement) await document.documentElement.requestFullscreen(); else await document.exitFullscreen(); }
+    catch(e) { alert('เบราว์เซอร์นี้ไม่อนุญาตให้เปิดโหมดเต็มหน้าจอ'); }
+  });
+})();
+</script>
+</body>
+</html>
