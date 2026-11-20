@@ -1,12 +1,10 @@
 {
   "name": "aria-internship-dashboard",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "private": true,
   "type": "module",
-  "description": "Internship Tracker Dashboard with secure Gemini-powered ARIA assistant",
-  "engines": {
-    "node": ">=20.0.0"
-  },
+  "description": "Invite-only private Internship Tracker with Gemini AI assistant",
+  "engines": { "node": ">=20.0.0" },
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js"
@@ -15,6 +13,7 @@
     "dotenv": "^16.6.1",
     "express": "^5.1.0",
     "express-rate-limit": "^8.1.0",
-    "helmet": "^8.1.0"
+    "helmet": "^8.1.0",
+    "pg": "^8.16.3"
   }
 }

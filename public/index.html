@@ -54,18 +54,41 @@
 @media(max-width:560px){.aria-voice-row{grid-template-columns:1fr auto}.aria-voice-row label{grid-column:1/-1}.aria-voice-row select{grid-column:1}.aria-voice-row button{grid-column:2;grid-row:2}.weather-symbol{font-size:38px}}
 
 </style>
+<link rel="stylesheet" href="/ui-v42.css">
 </head>
-<body>
+<body class="locked">
+<section class="auth-screen" id="authScreen" aria-label="เข้าสู่ระบบ ARIA">
+  <div class="auth-shell">
+    <div class="auth-brand"><div class="auth-orb"><span></span><i></i></div><div><p>PRIVATE AI WORKSPACE</p><h1>ARIA <em>4.2</em></h1><small>Personal Intelligence · Internship Tracker</small></div></div>
+    <div class="auth-copy"><span class="eyebrow">INVITE-ONLY ACCESS</span><h2>พื้นที่ทำงานส่วนตัว<br>สำหรับสมาชิกที่ได้รับเชิญ</h2><p>ข้อมูลของแต่ละบัญชีแยกออกจากกัน บันทึกงานและบทสนทนาไม่แชร์ให้สมาชิกคนอื่น</p></div>
+    <div class="auth-tabs"><button type="button" id="authModeLoginBtn" class="active">เข้าสู่ระบบ</button><button type="button" id="authModeRegisterBtn">สมัครด้วยรหัสเชิญ</button></div>
+    <form id="authLoginForm" class="auth-form">
+      <label>อีเมล<input id="authLoginEmail" type="email" maxlength="254" autocomplete="username" placeholder="you@example.com" required></label>
+      <label>รหัสผ่าน<input id="authLoginPassword" type="password" minlength="12" maxlength="128" autocomplete="current-password" placeholder="รหัสผ่านบัญชีของคุณ" required></label>
+      <button class="btn primary auth-submit" id="authLoginBtn" type="submit">เข้าสู่ระบบ <span>→</span></button>
+    </form>
+    <form id="authRegisterForm" class="auth-form" hidden>
+      <label>ชื่อที่ใช้แสดง<input id="authRegisterName" type="text" minlength="2" maxlength="80" autocomplete="name" placeholder="ชื่อเล่นหรือชื่อที่ต้องการ" required></label>
+      <label>อีเมล<input id="authRegisterEmail" type="email" maxlength="254" autocomplete="email" placeholder="you@example.com" required></label>
+      <label>รหัสผ่าน<input id="authRegisterPassword" type="password" minlength="12" maxlength="128" autocomplete="new-password" placeholder="อย่างน้อย 12 ตัวอักษร" required></label>
+      <label>รหัสเชิญจากผู้ดูแล<input id="authInviteCode" type="text" maxlength="32" autocomplete="off" placeholder="ARIA-XXXXXXXXXXXXXXXX" required></label>
+      <button class="btn primary auth-submit" id="authRegisterBtn" type="submit">สร้างบัญชี <span>→</span></button>
+    </form>
+    <div class="auth-status" id="authStatus" role="status" aria-live="polite">กำลังตรวจสอบระบบ…</div>
+    <div class="auth-foot"><span>ENCRYPTED SESSION</span><span>ข้อมูลส่วนตัว · Invite only</span></div>
+  </div>
+</section>
 <div class="app">
 <header class="topbar">
   <div class="brand"><div class="brand-mark">⌛</div><div><div class="eyebrow">INTERNSHIP TRACKER · 2026—2027</div><h1>ระบบติดตามการฝึกงาน</h1></div></div>
-  <div class="top-right"><div class="live"><i class="dot"></i><span>LIVE · เวลาไทย</span><strong id="nowText">—</strong></div><button class="btn small" id="fullscreenBtn" type="button">⛶ เต็มหน้าจอ</button></div>
+  <div class="top-right"><div class="user-chip" id="userBadge" hidden><span class="user-avatar" id="userAvatar">A</span><span><b id="appUserName">สมาชิก</b><small id="appUserRole">MEMBER</small></span></div><div class="live"><i class="dot"></i><span>LIVE · เวลาไทย</span><strong id="nowText">—</strong></div><button class="btn small" id="fullscreenBtn" type="button">⛶ เต็มหน้าจอ</button><button class="btn small ghost" id="globalLogoutBtn" type="button">ออกจากระบบ</button></div>
 </header>
 <nav class="nav" aria-label="เมนูหลัก">
   <button class="active" data-view="overview" type="button">▦ ภาพรวม</button>
   <button data-view="calendar" type="button">▦ ปฏิทิน</button>
   <button data-view="logs" type="button">✎ บันทึกงาน</button>
   <button data-view="reports" type="button">▤ สถิติและรายงาน</button>
+  <button data-view="admin" id="adminNavBtn" type="button" hidden>⚙ ผู้ดูแลระบบ</button>
 </nav>
 
 <main>
@@ -108,16 +131,16 @@
         <button class="btn" id="ariaSpeakBtn" type="button">🔊 อ่านคำตอบ</button>
       </div>
       <div class="aria-auth" id="ariaAuthPanel">
-        <div class="aria-auth-title"><strong>เชื่อมต่อ ARIA AI</strong><span id="ariaAuthStatus">ตรวจสอบเซิร์ฟเวอร์…</span></div>
-        <div class="aria-auth-row"><input id="ariaAccessPassword" type="password" maxlength="128" autocomplete="current-password" placeholder="รหัสผ่านเข้าใช้งาน ARIA"><button class="btn primary" id="ariaLoginBtn" type="button">เข้าสู่ระบบ</button></div>
+        <div class="aria-auth-title"><strong>ARIA CONNECTED</strong><span id="ariaAuthStatus">กำลังตรวจสอบบัญชี…</span></div>
+        <div class="account-usage"><span>โควตาของบัญชีนี้</span><strong id="dailyQuotaText">—</strong></div><div class="account-usage"><span>คำขอ Gemini API รวมของระบบ</span><strong id="ariaGlobalQuotaText">—</strong></div>
       </div>
       <div class="aria-settings">
-        <div class="aria-voice-row"><label for="ariaVoiceSelect">เสียงภาษาไทย</label><select id="ariaVoiceSelect" aria-label="เลือกเสียงภาษาไทย"><option value="">กำลังโหลดรายการเสียง…</option></select><button class="btn small" id="ariaVoiceTestBtn" type="button">ทดลองเสียงที่เลือก</button></div>
+        <div class="aria-voice-row"><label for="ariaVoiceSelect">เสียงภาษาไทย</label><select id="ariaVoiceSelect" aria-label="เลือกเสียงภาษาไทย"><option value="">กำลังโหลดรายการเสียง…</option></select><button class="btn small" id="ariaVoiceTestBtn" type="button">ทดลองเสียงที่เลือก</button></div><div class="voice-hint" id="ariaVoiceHint">กำลังตรวจสอบเสียงในอุปกรณ์</div>
         <label class="aria-consent"><input id="ariaLogsConsent" type="checkbox"> อนุญาตให้ ARIA ค้นหาสรุปบันทึกงานเมื่อถาม (ส่งเฉพาะวันที่/หัวข้อ/หมวดหมู่/ชั่วโมง/สถานะ)</label>
-        <div class="aria-auth-foot"><span>บทสนทนาอยู่ในหน่วยความจำของแท็บนี้ · API ใช้ store=false</span><button class="btn small ghost" id="ariaLogoutBtn" type="button" hidden>ออกจากระบบ</button></div>
+        <div class="aria-auth-foot"><span id="ariaPrivacyStatus">บัญชีส่วนตัว · ข้อมูลแยกตามสมาชิก</span><button class="btn small ghost" id="ariaLogoutBtn" type="button">ออกจากระบบ</button></div>
       </div>
       <div class="aria-examples">ลองถาม: <button type="button" data-aria-ask="ช่วยสรุปว่าฉันเหลือเวลาและวันทำงานอีกเท่าไร">สรุปเวลาฝึกงาน</button> · <button type="button" data-aria-ask="พรุ่งนี้เป็นวันทำงานไหม">พรุ่งนี้ทำงานไหม</button> · <button type="button" data-aria-ask="ช่วงนี้อากาศเป็นอย่างไร">อากาศเป็นอย่างไร</button></div>
-      <div class="aria-privacy-note">คำถามจะส่งไปยัง OpenAI API เพื่อประมวลผล · ห้ามใส่ข้อมูลผู้ป่วยหรือข้อมูลลับ · มีค่าใช้จ่ายตามการใช้งาน API</div>
+      <div class="aria-privacy-note">คำถามใช้โควตา Gemini ร่วมของระบบ · จำกัดทั้งรายบัญชีและรวมทุกคน · ห้ามใส่ข้อมูลผู้ป่วยหรือข้อมูลลับ</div>
     </section>
   </div>
 
@@ -168,7 +191,7 @@
     <div class="calendar-legend"><span><i class="key"></i>วันทำงาน</span><span><i class="key weekend"></i>เสาร์–อาทิตย์</span><span><i class="key holiday"></i>วันหยุดราชการ</span><span><i class="key logged"></i>มีบันทึกงาน</span><span>กรอบสีน้ำเงิน = วันนี้</span></div>
     <div class="selected-day"><div><strong id="selectedDateText">เลือกวันที่เพื่อดูรายละเอียด</strong><br><span id="selectedDateStatus">แตะวันที่บนปฏิทิน</span></div><button class="btn primary no-print" id="logSelectedBtn" type="button">＋ บันทึกงานวันนี้</button></div>
   </div>
-  <div class="panel content" style="margin-top:14px"><div class="heading"><h2>วันหยุดราชการที่ใช้คำนวณ</h2><small>แก้ไขได้ตามประกาศของสถานที่ฝึกงาน</small></div><div class="holiday-manager" id="holidayList"></div><div class="no-print" style="margin-top:15px"><form id="holidayForm" class="form-grid"><div class="field"><label for="holidayDate">วันที่</label><input id="holidayDate" type="date" min="2026-11-16" max="2027-03-12" required></div><div class="field"><label for="holidayName">ชื่อวันหยุด</label><input id="holidayName" maxlength="100" placeholder="เช่น วันหยุดพิเศษของหน่วยงาน" required></div><div class="field full"><button class="btn primary" type="submit">＋ เพิ่มวันหยุดในปฏิทิน</button></div></form><p class="note">หากเพิ่มวันหยุดในวันจันทร์–ศุกร์ ระบบจะหักวันทำงานและชั่วโมงตามกำหนดการให้อัตโนมัติ การตั้งค่านี้บันทึกไว้ในเบราว์เซอร์เครื่องนี้</p></div></div>
+  <div class="panel content" style="margin-top:14px"><div class="heading"><h2>วันหยุดราชการที่ใช้คำนวณ</h2><small>แก้ไขได้ตามประกาศของสถานที่ฝึกงาน</small></div><div class="holiday-manager" id="holidayList"></div><div class="no-print" style="margin-top:15px"><form id="holidayForm" class="form-grid"><div class="field"><label for="holidayDate">วันที่</label><input id="holidayDate" type="date" min="2026-11-16" max="2027-03-12" required></div><div class="field"><label for="holidayName">ชื่อวันหยุด</label><input id="holidayName" maxlength="100" placeholder="เช่น วันหยุดพิเศษของหน่วยงาน" required></div><div class="field full"><button class="btn primary" type="submit">＋ เพิ่มวันหยุดในปฏิทิน</button></div></form><p class="note">หากเพิ่มวันหยุดในวันจันทร์–ศุกร์ ระบบจะหักวันทำงานและชั่วโมงตามกำหนดการให้อัตโนมัติ การตั้งค่านี้บันทึกแยกตามบัญชีผู้ใช้</p></div></div>
 </section>
 
 <section class="view" id="view-logs">
@@ -185,10 +208,10 @@
         <div class="field"><label for="logStatus">สถานะ</label><select id="logStatus"><option>เสร็จแล้ว</option><option>กำลังดำเนินการ</option><option>รอติดตาม</option></select></div>
         <div class="field full"><div class="form-actions"><button class="btn primary" type="submit" id="saveLogBtn">บันทึกงาน</button><button class="btn hidden" type="button" id="cancelEditBtn">ยกเลิกการแก้ไข</button><button class="btn ghost" type="reset" id="resetLogBtn">ล้างแบบฟอร์ม</button></div></div>
       </form>
-      <p class="note" style="margin-top:12px">บันทึกจะเก็บไว้ในเบราว์เซอร์ของเครื่องนี้ (Local Storage) ไม่ได้ส่งขึ้น GitHub หรือ Render และจะไม่ซิงก์ข้ามอุปกรณ์</p>
+      <p class="note" style="margin-top:12px">บันทึกจะจัดเก็บในฐานข้อมูลส่วนตัวของบัญชีนี้ และซิงก์เมื่อเข้าสู่ระบบบนอุปกรณ์อื่น</p>
     </div>
     <div class="panel content">
-      <div class="heading"><h2>สรุปบันทึกงาน</h2><small>ข้อมูลที่บันทึกในเครื่องนี้</small></div>
+      <div class="heading"><h2>สรุปบันทึกงาน</h2><small>ข้อมูลส่วนตัวของบัญชีนี้</small></div>
       <div class="mini-grid"><div class="mini"><div class="k">รายการทั้งหมด</div><div class="v" id="logTotal">0</div></div><div class="mini"><div class="k">ชั่วโมงที่บันทึก</div><div class="v" id="loggedHours">0</div></div><div class="mini"><div class="k">วันที่มีบันทึก</div><div class="v" id="loggedDates">0</div></div></div>
       <div class="field" style="margin-top:16px"><label for="logSearch">ค้นหาบันทึก</label><input class="search" id="logSearch" type="search" placeholder="ค้นหาจากหัวข้อ รายละเอียด หรือหมวดหมู่"></div>
       <div class="toolbar no-print" style="margin-top:14px"><button class="btn" id="exportCsvBtn" type="button">↓ Export CSV (Excel)</button><button class="btn" id="backupBtn" type="button">สำรองข้อมูล JSON</button></div>
@@ -213,8 +236,31 @@
   <div class="panel content"><div class="heading"><h2>จัดการข้อมูลและส่งออกรายงาน</h2><small>ไม่ต้องใช้บริการเสริมหรือไลบรารีภายนอก</small></div><div class="toolbar no-print"><button class="btn primary" id="reportCsvBtn" type="button">↓ ดาวน์โหลด Excel (CSV)</button><button class="btn" id="reportJsonBtn" type="button">สำรองข้อมูลทั้งหมด (JSON)</button><button class="btn" id="reportPrintBtn" type="button">พิมพ์ / บันทึกเป็น PDF</button></div><p class="note" style="margin-top:13px">CSV เปิดด้วย Excel ได้ · PDF ใช้เมนู Print ของเบราว์เซอร์แล้วเลือก “Save as PDF” · JSON ใช้สำรองและย้ายข้อมูลไปยังเครื่องอื่น</p></div>
   <div class="panel content" style="margin-top:14px"><div class="heading"><h2>วันหยุดที่ใช้ในการคำนวณ</h2><small>แก้ไขได้ในเมนูปฏิทิน</small></div><div id="reportHolidays" class="list"></div></div>
 </section>
+
+<section class="view" id="view-admin">
+  <div class="admin-header panel content"><div><div class="section-label">ADMIN CONTROL CENTER</div><h2>จัดการสมาชิกและโควตา ARIA</h2><p class="note">สร้างคำเชิญให้เพื่อน จัดการบัญชี และกำหนดจำนวนคำถามต่อวัน</p></div><span class="admin-tag">ADMIN</span></div>
+  <div class="two-col admin-grid">
+    <div class="panel content">
+      <div class="heading"><h2>สร้างรหัสเชิญสมาชิก</h2><small>ใช้ได้เฉพาะผู้ที่ได้รับรหัส</small></div>
+      <form id="adminInviteForm" class="form-grid">
+        <div class="field"><label for="adminInviteUses">จำนวนครั้งที่ใช้ได้</label><select id="adminInviteUses"><option value="1">1 คน</option><option value="2">2 คน</option><option value="3">3 คน</option><option value="5">5 คน</option></select></div>
+        <div class="field"><label for="adminInviteHours">หมดอายุภายใน</label><select id="adminInviteHours"><option value="24">24 ชั่วโมง</option><option value="72">3 วัน</option><option value="168" selected>7 วัน</option><option value="336">14 วัน</option></select></div>
+        <div class="field full"><label for="adminInviteLimit">โควตา AI ต่อวัน / คน</label><select id="adminInviteLimit"><option value="5">5 คำถาม</option><option value="10">10 คำถาม</option><option value="20" selected>20 คำถาม</option><option value="30">30 คำถาม</option><option value="50">50 คำถาม</option></select></div>
+        <div class="field full"><button class="btn primary" type="submit" id="adminCreateInviteBtn">＋ สร้างรหัสเชิญ</button></div>
+      </form>
+      <div class="invite-result" id="adminInviteResult" hidden><span>รหัสเชิญใหม่ · คัดลอกส่งให้เพื่อน</span><strong id="adminInviteCode"></strong><button class="btn small" type="button" id="adminCopyInviteBtn">คัดลอกรหัส</button></div>
+    </div>
+    <div class="panel content">
+      <div class="heading"><h2>ภาพรวมการใช้งานวันนี้</h2><button class="btn small" id="adminRefreshBtn" type="button">↻ รีเฟรช</button></div>
+      <div class="admin-stats"><div><span>สมาชิกทั้งหมด</span><strong id="adminMemberCount">—</strong></div><div><span>คำขอ Gemini API / โควตารวม</span><strong id="adminRequestCount">—</strong></div><div><span>คำเชิญที่ยังใช้ได้</span><strong id="adminInviteCount">—</strong></div></div>
+      <p class="note" id="adminUsageDate">ตัวเลขรวมจากทุกบัญชีสมาชิก</p>
+    </div>
+  </div>
+  <div class="panel content admin-table-panel"><div class="heading"><h2>สมาชิกและโควตารายวัน</h2><small>ข้อมูลส่วนตัวไม่แสดงในหน้านี้</small></div><div class="table-wrap"><table><thead><tr><th>สมาชิก</th><th>สถานะ</th><th>ใช้วันนี้</th><th>โควตา</th><th>จัดการ</th></tr></thead><tbody id="adminMembersList"><tr><td colspan="5">กำลังโหลด…</td></tr></tbody></table></div></div>
+  <div class="panel content admin-table-panel"><div class="heading"><h2>รหัสเชิญล่าสุด</h2><small>รหัสจริงจะแสดงเพียงครั้งเดียวตอนสร้าง</small></div><div id="adminInvitesList" class="invite-list"></div></div>
+</section>
 </main>
-<footer class="footer"><span>ARIA v4.1 · Gemini API · Tool Calling · Canvas 3D · Browser Voice · Open-Meteo Weather</span><span>บันทึกงานอยู่ในเบราว์เซอร์เครื่องนี้ · เวลา Asia/Bangkok</span></footer>
+<footer class="footer"><span>ARIA v4.2 · Gemini AI · Private Accounts · Tool Calling · Voice · Weather</span><span>ข้อมูลแยกตามบัญชีสมาชิก · เวลา Asia/Bangkok</span></footer>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="/app.js" defer></script>
