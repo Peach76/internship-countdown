@@ -1,55 +1,125 @@
-# Internship Tracker + ARIA Assistant
+# Internship Tracker + ARIA AI Assistant v4.1 (Gemini)
 
-A lightweight, dependency-free static website for tracking an internship period from **16 November 2026, 08:00** to **12 March 2027, 16:00** (Asia/Bangkok).
+A single-service Node/Express deployment that preserves the internship dashboard and runs ARIA through the Gemini Developer API. Gemini is called only from the server; the browser never receives the API key.
 
-## Features
+## What's included
 
-- Live countdown, remaining workdays and remaining working hours.
-- Today's work/holiday status and timeline progress.
-- Monthly calendar with weekdays, weekends, public holidays and days with logs.
-- Daily work log with create, edit, delete, category, status and manually entered hours.
-- Monthly summaries and lightweight CSS-based charts.
-- Export work logs as Excel-compatible CSV (UTF-8 BOM).
-- Backup/restore all logs and editable holidays using JSON.
-- Print the current report or save it as PDF using the browser's print dialog.
-- Editable public-holiday list for organization-specific schedule changes.
-- **ARIA Assistant:** animated 3D-style particle orb drawn with Canvas (no image or 3D library).
-- ARIA can answer locally about current Bangkok date/time, weekdays, relative dates, the configured holidays, remaining workdays and the internship countdown.
-- Optional Thai speech input/output through the browser's Web Speech APIs. Voice replies are off by default and can be enabled by the user.
+- Internship Dashboard: live countdown, workday/hour calculations, calendar, editable holidays, work logs, reports, CSV/PDF export, and JSON backup/restore.
+- ARIA assistant: Thai natural-language conversation using Gemini `generateContent` (default model: `gemini-3.1-flash-lite`; configurable with `GEMINI_MODEL`).
+- Function/tool calling: current Bangkok time, date/holiday status, internship progress, work-log summary/search (only after user opt-in), and current/3-day weather.
+- Browser voice input/output using the Thai speech voices available on the device.
+- Weather based on browser-granted coordinates and Open-Meteo. Location is optional.
+- Security controls: server-side API key, password gate, signed HttpOnly session cookie, same-origin checks, rate limits, request-size limits, and Helmet security headers.
 
-## Performance and compatibility
+## Important privacy notes
 
-- Single HTML file; no framework, external JavaScript library, external font, image request, API request, or backend required.
-- The particle animation uses a capped canvas pixel ratio and pauses when the page is in the background or the orb is off-screen. Reduced-motion preferences are respected.
-- For voice input, use a supported browser such as current Chrome or Edge and grant microphone permission. Speech recognition availability can vary by browser and may use the browser vendor's online recognition service.
-- Thai speech output uses a Thai voice installed/available in the browser. The app prefers a voice whose name suggests a feminine Thai voice when one is available; actual voice/gender depends on the device.
-- If speech recognition is unavailable, type questions into the ARIA input instead.
+- **Do not enter patient names, hospital numbers, diagnoses, medical records, credentials, or confidential hospital information** into Work Log or ARIA.
+- Gemini API Free Tier usage is subject to Google's current free-tier terms. Google's pricing page states that free-tier content may be used to improve products. Do not send confidential or sensitive information to the free tier. Review Google's current [Gemini API Terms](https://ai.google.dev/gemini-api/terms) before use.
+- Work-log access is off by default. When the user enables consent, the app sends only date/title/category/hours/status (not the free-text detail field) with an AI question. ARIA receives the work-log data only when it calls the relevant tool.
+- Browser geolocation is requested only after the user clicks the location button. Coordinates are kept in page memory and are sent to the backend only for an AI weather question; they are not saved in server files or Local Storage.
+- The Gemini API key is read only by `server.js` from `GEMINI_API_KEY`. Never put it in `public/index.html`, `public/app.js`, GitHub, or a committed `.env` file.
+- The login password is configured server-side and should be at least 12 characters. Sessions use a signed HttpOnly cookie and expire after 12 hours. Login and chat endpoints are rate-limited.
+- Conversation context is held in memory in the current browser tab and submitted to Gemini for follow-up context. It is not written to the app's Local Storage or a server database.
+- Work logs and holidays remain in the browser's Local Storage using the existing v3/v4 key. They are not moved into a server database and do not sync between devices.
 
-## ARIA example questions
+## Local development (Windows / PowerShell)
 
-- `วันนี้วันอะไร เวลาเท่าไร`
-- `อีก 5 วันเป็นวันอะไร`
-- `วันที่ 10 ธันวาคม 2569 เป็นวันหยุดไหม`
-- `พรุ่งนี้เป็นวันหยุดไหม`
-- `เหลือวันทำงานกี่วัน`
-- `เหลืออีกกี่วันถึงวันสิ้นสุดการฝึกงาน`
+1. Install Node.js 20 or newer.
+2. Open PowerShell in this project folder.
+3. Install packages:
 
-The local calendar/holiday answers use the holidays configured inside this dashboard. They are not a live official-holiday feed. Add or edit holidays in the Calendar tab when your organization announces additional days off.
+   ```powershell
+   npm install
+   ```
 
-## Storage and privacy
+4. Copy `.env.example` to `.env` and set:
+   - `GEMINI_API_KEY`: your key from [Google AI Studio](https://aistudio.google.com/api-keys).
+   - `GEMINI_MODEL`: defaults to `gemini-3.1-flash-lite`.
+   - `ARIA_ACCESS_PASSWORD`: a private password of at least 12 characters.
+   - `SESSION_SECRET`: random text of at least 32 characters. Generate one with:
 
-This is a static site. Work logs and custom holiday settings are saved in the current browser's `localStorage`. They are **not uploaded to GitHub, Render, or a server**, and do not automatically sync between devices. Use the JSON backup/export and import feature to move data between browsers or devices. ARIA question/answer text is temporary and is not saved. The voice preference is stored locally. Do not enter patient information, personal identifiers, passwords, or other confidential hospital data.
+   ```powershell
+   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+   ```
+
+5. Start the app:
+
+   ```powershell
+   npm start
+   ```
+
+6. Open `http://localhost:10000`.
+
+The browser geolocation and microphone features work on HTTPS sites and on localhost. Weather requires an internet connection.
 
 ## Deploy to Render
 
-1. Upload `index.html` and `README.md` to the root of a GitHub repository (replace the old files).
-2. In Render, choose **New → Static Site** and connect that repository.
-3. Configure: Branch `main` (or your deployment branch), Root Directory blank, Build Command `echo "No build step required"`, Publish Directory `.`.
-4. Create the Static Site. New commits to the connected branch trigger a new deployment.
+This app must run as a **Render Web Service**, not a Static Site, because it includes the server-side Gemini integration.
 
-## Default schedule
+### GitHub file structure
 
-- Working time: 08:00–12:00 and 13:00–16:00 (7 net hours/day).
-- Scheduled period: 117 calendar days, 79 workdays, 38 off-days, 553 planned net working hours.
-- Default weekday holidays: 7 Dec 2026, 10 Dec 2026, 16 Dec 2026, 31 Dec 2026, 1 Jan 2027 and 22 Feb 2027.
-- Holiday settings can be changed in the Calendar tab and are stored locally in the browser.
+Upload the complete project contents into the repository root:
+
+```text
+.
+├── public/
+│   ├── index.html
+│   └── app.js
+├── server.js
+├── package.json
+├── render.yaml
+├── .env.example
+├── .gitignore
+└── README.md
+```
+
+Do not upload `node_modules` or a real `.env` file. Keep any old v3 root-level `index.html` as a backup until the new Web Service is confirmed.
+
+### Render setup
+
+1. Push the project files to GitHub.
+2. In [Render Dashboard](https://dashboard.render.com/), choose **New → Web Service** and connect the repository.
+3. Use:
+   - Runtime: `Node`
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+   - Node version: `20`
+4. In the Render service's **Environment** page, add:
+
+   | Key | Value |
+   |---|---|
+   | `GEMINI_API_KEY` | Paste your Gemini API key here (secret) |
+   | `GEMINI_MODEL` | `gemini-3.1-flash-lite` |
+   | `ARIA_ACCESS_PASSWORD` | Your own password, at least 12 characters |
+   | `SESSION_SECRET` | Random secret, at least 32 characters |
+   | `NODE_ENV` | `production` |
+
+   If the Render service still has old `OPENAI_API_KEY` or `OPENAI_MODEL` variables, remove them; this Gemini build does not use them. Never share the API key in chat or commit it to GitHub.
+
+5. Save the environment settings and deploy. Check:
+
+   `https://YOUR-SERVICE.onrender.com/api/health`
+
+   Expected response after all variables are set: `{"ok":true,"ready":true}`.
+
+6. Open the service URL, enter the `ARIA_ACCESS_PASSWORD`, and test:
+   - `พรุ่งนี้เป็นวันอะไร`
+   - `วันที่ 10 ธันวาคม 2569 เป็นวันหยุดไหม`
+   - `ฉันเหลือวันทำงานอีกกี่วัน`
+   - `ช่วยอธิบายความแตกต่างระหว่าง API กับ Backend ให้หน่อย`
+
+7. For weather questions, first press **ใช้ตำแหน่งปัจจุบัน** and allow location access.
+
+### If you already deployed the OpenAI v4 service
+
+You can update the existing Node Web Service by replacing its GitHub project files with this Gemini package, then change Environment Variables as shown above and redeploy. A Static Site cannot run this backend; create a Web Service if the current deployment is still Static Site. Keep the old deployment until the Gemini version passes your tests.
+
+## Free tier and limits
+
+Gemini API has a free tier for selected models, but it is quota-limited and is not unlimited service. Google's published pricing currently lists free input/output for `gemini-3.1-flash-lite`; quotas and model availability can change by account, region, and date. Check [official Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing) and AI Studio usage before relying on it. If the model returns HTTP 429, wait for the quota window to reset or choose an eligible model/tier. This app does not automatically switch providers or bypass quotas.
+
+Render Free Web Services may spin down when idle. The first request after sleep can take longer while the service starts. A paid always-on plan is needed if consistent response time is important.
+
+## Weather provider
+
+Weather uses [Open-Meteo](https://open-meteo.com/). The app requests precise browser location only after user action. Forecasts are approximate and should not be used for emergency decisions.
