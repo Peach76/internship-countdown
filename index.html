@@ -4,14 +4,48 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#081321">
-<meta name="description" content="แดชบอร์ดติดตามการฝึกงาน ปฏิทิน บันทึกงาน สถิติ และนับถอยหลังถึงวันสิ้นสุด">
-<title>Internship Tracker · 12 มีนาคม 2570</title>
+<meta name="description" content="แดชบอร์ดติดตามการฝึกงาน พร้อมผู้ช่วย ARIA สำหรับถามตอบวันเวลาและวันหยุด">
+<title>Internship Tracker · ARIA Assistant</title>
 <style>
 :root{--bg:#07111e;--panel:#0e1d2e;--panel2:#13263b;--line:#233b52;--text:#edf5fb;--muted:#91a7bb;--green:#61e2b1;--green2:#239d7b;--blue:#79baff;--orange:#ffc16b;--red:#ff818b;--purple:#b4a0ff;--shadow:0 16px 44px rgba(0,0,0,.22);--radius:18px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 12% -15%,rgba(37,139,119,.19),transparent 40%),radial-gradient(ellipse at 95% 0%,rgba(69,106,176,.15),transparent 36%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,"Noto Sans Thai",sans-serif;min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:2px}.app{width:min(1320px,calc(100% - 32px));margin:0 auto;padding:24px 0 40px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#168b70,#4b9ce3);font-size:22px;box-shadow:0 8px 22px #1a9d7b33}.eyebrow{font-size:10px;letter-spacing:1.8px;color:var(--green);font-weight:800}.brand h1{font-size:18px;margin:2px 0 0}.top-right{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.live{display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:#102137;border-radius:99px;padding:9px 13px;font-size:11px;color:#c5d4e2}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px #61e2b11d}.nav{display:flex;gap:7px;overflow:auto;padding:5px;margin:0 0 17px;border:1px solid var(--line);background:#0b1929;border-radius:14px;scrollbar-width:thin}.nav button{border:0;background:transparent;color:var(--muted);padding:10px 15px;border-radius:10px;white-space:nowrap;font-size:12px;font-weight:700}.nav button.active{color:#061b17;background:var(--green);box-shadow:0 5px 17px #44d4a52a}.view{display:none}.view.active{display:block}.panel{background:linear-gradient(145deg,rgba(18,37,58,.97),rgba(12,27,44,.97));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.hero{display:grid;grid-template-columns:1.35fr .85fr;gap:14px;margin-bottom:14px}.timer-panel{padding:24px 25px;position:relative;overflow:hidden}.timer-panel:after{content:"";position:absolute;width:260px;height:260px;right:-100px;top:-130px;border-radius:50%;border:1px solid #61e2b12b;box-shadow:0 0 0 28px #61e2b10a,0 0 0 58px #61e2b108;pointer-events:none}.section-label{font-size:10px;color:var(--muted);font-weight:800;letter-spacing:1.5px}.target{font-size:13px;color:#dbe8f3;margin-top:7px}.target strong{color:var(--green)}.timer{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:23px 0 16px;max-width:680px;position:relative;z-index:1}.timebox{background:#071321a8;border:1px solid #8ba7c51c;border-radius:13px;padding:14px 7px;text-align:center}.timebox .num{font-size:clamp(28px,4.5vw,47px);font-weight:850;line-height:1.08;letter-spacing:-1.5px;font-variant-numeric:tabular-nums}.timebox .unit{font-size:10px;color:var(--muted);margin-top:7px}.timer-foot{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:11px;position:relative;z-index:1}.goal-panel{padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}.goal-date{font-size:28px;font-weight:850;margin-top:13px;line-height:1.2}.goal-date small{display:block;color:var(--muted);font-size:12px;font-weight:500;margin-top:7px}.pill{display:inline-flex;align-items:center;border:1px solid #61e2b144;background:#61e2b111;color:var(--green);border-radius:99px;padding:6px 9px;font-size:10px;font-weight:800}.percent{display:flex;justify-content:space-between;align-items:end;gap:8px;margin-bottom:8px}.percent strong{font-size:26px;font-variant-numeric:tabular-nums}.percent span{font-size:10px;color:var(--muted)}.bar{height:9px;background:#263c52;border-radius:99px;overflow:hidden}.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#239d7b,#70e8bb);border-radius:99px;transition:width .2s}.goal-note{font-size:10px;color:var(--muted);margin-top:9px;line-height:1.6}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}.stat{padding:16px 17px;min-height:116px}.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px}.icon{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:var(--blue);background:#79baff15;font-size:15px}.stat:nth-child(2) .icon{color:var(--green);background:#61e2b116}.stat:nth-child(3) .icon{color:var(--orange);background:#ffc16b16}.stat:nth-child(4) .icon{color:var(--purple);background:#b4a0ff16}.stat .value{font-size:29px;font-weight:850;letter-spacing:-.7px;margin-top:8px;font-variant-numeric:tabular-nums}.stat .sub{font-size:10px;color:var(--muted);margin-top:2px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}.content{padding:19px}.heading{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.heading h2{font-size:14px;margin:0}.heading small{font-size:10px;color:var(--muted)}.today-box{display:flex;align-items:center;gap:13px;padding:14px;border:1px solid #61e2b12d;background:#61e2b10b;border-radius:13px}.today-icon{height:42px;width:42px;border-radius:12px;background:#61e2b119;color:var(--green);display:grid;place-items:center;font-size:20px;flex:none}.today-box strong{display:block;font-size:13px}.today-box span{display:block;color:var(--muted);font-size:11px;margin-top:3px}.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.mini{border:1px solid #829bb21c;background:#07132155;border-radius:12px;padding:11px}.mini .k{font-size:10px;color:var(--muted)}.mini .v{font-size:19px;font-weight:800;margin-top:3px}.progress-item{margin-top:16px}.progress-meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:10px;margin-bottom:7px}.progress-meta b{color:var(--text)}.month-bars{display:grid;gap:12px}.month-row{display:grid;grid-template-columns:90px 1fr 80px;gap:10px;align-items:center}.month-name{font-size:11px}.month-track{height:9px;background:#26394d;border-radius:99px;overflow:hidden;display:flex}.month-track .work{height:100%;background:linear-gradient(90deg,#239d7b,#70e8bb)}.month-track .off{height:100%;background:#e0a64e}.month-count{text-align:right;color:var(--muted);font-size:10px;font-variant-numeric:tabular-nums}.legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:10px;margin-top:13px}.legend span{display:flex;align-items:center;gap:6px}.swatch{width:8px;height:8px;border-radius:3px;background:var(--green)}.swatch.off{background:var(--orange)}.swatch.today{background:var(--blue)}.list{display:grid;gap:0}.list-row{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid #8ba2b21a}.list-row:last-child{border-bottom:0;padding-bottom:0}.list-date{min-width:88px;color:var(--orange);font-size:11px;font-weight:800}.list-detail{flex:1;font-size:11px;color:#dbe6f0}.list-kind{font-size:9px;color:var(--muted);white-space:nowrap}.btn{border:1px solid var(--line);background:#12263c;color:#d9e7f2;padding:9px 12px;border-radius:10px;font-size:11px;font-weight:700;transition:.15s}.btn:hover{border-color:#4b8197;background:#18334b}.btn.primary{border-color:transparent;background:var(--green);color:#06221a}.btn.danger{border-color:#ff818b44;color:#ffabb1;background:#ff818b0b}.btn.small{padding:6px 9px;font-size:10px}.btn.ghost{background:transparent}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.field{display:grid;gap:6px}.field label{font-size:10px;color:var(--muted);font-weight:700}.field input,.field textarea,.field select,.search{width:100%;border:1px solid var(--line);background:#081726;color:var(--text);padding:10px 11px;border-radius:10px;font-size:12px;min-width:0}.field textarea{min-height:88px;resize:vertical}.field input::placeholder,.field textarea::placeholder,.search::placeholder{color:#657d94}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field.full{grid-column:1/-1}.form-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.empty{padding:25px;text-align:center;border:1px dashed #57708955;border-radius:13px;color:var(--muted);font-size:12px}.calendar-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}.calendar-title{font-size:17px;font-weight:800}.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.weekday{text-align:center;color:var(--muted);font-size:10px;font-weight:800;padding:7px 0}.day{min-height:74px;border:1px solid #263c51;background:#0a1929;border-radius:11px;padding:8px;text-align:left;color:var(--text);display:flex;flex-direction:column;justify-content:space-between;gap:6px;min-width:0}.day:hover{border-color:#73a4b7}.day.blank{visibility:hidden}.day .dnum{font-size:12px;font-weight:800}.day .tag{font-size:9px;line-height:1.25;color:var(--muted)}.day.workday{background:#61e2b109}.day.weekend{background:#ffc16b0a}.day.holiday{background:#ff818b0b;border-color:#ff818b35}.day.today{outline:2px solid var(--blue);outline-offset:1px}.day.selected{border-color:var(--green);background:#61e2b11b}.day.other{opacity:.5}.day .log-dot{width:6px;height:6px;border-radius:50%;background:var(--purple);display:inline-block;margin-right:4px}.calendar-legend{display:flex;gap:13px;flex-wrap:wrap;margin-top:13px}.calendar-legend span{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px}.key{width:9px;height:9px;border-radius:3px;background:#61e2b1}.key.weekend{background:#ffc16b}.key.holiday{background:#ff818b}.key.logged{background:#b4a0ff}.selected-day{margin-top:14px;padding:13px;border:1px solid var(--line);border-radius:12px;background:#091827;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.selected-day strong{font-size:12px}.selected-day span{font-size:10px;color:var(--muted)}.log-list{display:grid;gap:10px;margin-top:13px}.log-card{border:1px solid #294158;background:#0a1929;border-radius:13px;padding:13px}.log-card-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.log-card h3{font-size:12px;margin:0}.log-card p{font-size:11px;color:var(--muted);line-height:1.6;margin:7px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.log-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px;color:var(--muted);font-size:9px}.tag-pill{display:inline-flex;border:1px solid #83a3bb2c;background:#83a3bb0e;color:#c1d2e0;border-radius:99px;padding:4px 7px;font-size:9px}.log-actions{display:flex;gap:5px;flex:none}.table-wrap{overflow:auto}.data-table{width:100%;border-collapse:collapse;min-width:540px}.data-table th,.data-table td{text-align:left;padding:10px 9px;border-bottom:1px solid #8ba2b21b;font-size:10px}.data-table th{color:var(--muted);font-weight:700}.data-table td{color:#dbe6f0}.chart-list{display:grid;gap:14px}.chart-row{display:grid;grid-template-columns:92px 1fr 65px;align-items:center;gap:10px}.chart-label{font-size:11px}.chart-track{height:12px;border-radius:99px;background:#26394d;overflow:hidden}.chart-track i{display:block;height:100%;background:linear-gradient(90deg,#239d7b,#70e8bb);border-radius:99px}.chart-value{text-align:right;font-size:10px;color:var(--muted)}.note{color:var(--muted);font-size:10px;line-height:1.7}.holiday-manager{display:grid;gap:8px}.holiday-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #819ab21c}.holiday-row:last-child{border-bottom:0}.holiday-row strong{font-size:11px;color:var(--orange)}.holiday-row span{font-size:11px;color:#dce7f0;flex:1}.toast{position:fixed;right:18px;bottom:18px;z-index:30;background:#18374a;border:1px solid #5bd9ad66;color:#effff8;padding:12px 15px;border-radius:12px;box-shadow:var(--shadow);font-size:12px;max-width:min(420px,calc(100% - 36px));opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateY(0)}.footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#7289a0;font-size:10px;padding:15px 3px 0}.hidden{display:none!important}
 @media(max-width:900px){.hero{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.app{width:calc(100% - 20px);padding-top:14px}.brand h1{font-size:15px}.live{font-size:10px}.timer-panel,.goal-panel,.content{padding:16px}.timer{gap:5px}.timebox{padding:12px 3px}.timebox .num{font-size:28px}.stats{gap:8px}.stat{padding:12px;min-height:106px}.stat .value{font-size:25px}.mini-grid{grid-template-columns:1fr 1fr 1fr}.mini .v{font-size:16px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.day{min-height:58px;padding:6px 5px}.day .tag{font-size:8px}.month-row{grid-template-columns:68px 1fr 65px;gap:7px}.calendar-grid{gap:4px}.weekday{font-size:9px}.calendar-title{font-size:15px}}
 @media print{body{background:#fff!important;color:#172331!important}.app{width:100%;padding:0}.topbar,.nav,.no-print,.footer{display:none!important}.view{display:none!important}.view.active{display:block!important}.panel{background:#fff!important;color:#172331!important;box-shadow:none;border:1px solid #ccd5dd;break-inside:avoid}.section-label,.heading small,.stat-top,.stat .sub,.note,.list-kind,.list-date,.chart-value,.month-count,.month-name,.holiday-row span,.holiday-row strong{color:#45596c!important}.stat .value,.heading h2,.log-card h3,.log-card p,.data-table td{color:#172331!important}.bar,.month-track,.chart-track{background:#e6ebef!important}.log-card{background:#fff!important;border-color:#ccd5dd}.log-card p{white-space:pre-wrap}}
+
+/* ARIA holographic assistant — lightweight canvas, no external assets */
+.hero{grid-template-columns:minmax(0,1.38fr) minmax(230px,.78fr) minmax(275px,.9fr)}
+.aria-panel{padding:17px 16px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:10px;min-width:0;border-color:#27617a;background:radial-gradient(ellipse at 50% 15%,rgba(31,157,195,.13),transparent 48%),linear-gradient(145deg,rgba(13,31,49,.98),rgba(8,22,37,.98))}
+.aria-panel:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 15%,rgba(75,199,232,.035) 48%,transparent 78%);pointer-events:none}
+.aria-head{display:flex;align-items:center;justify-content:space-between;gap:8px;position:relative;z-index:1}
+.aria-brand{display:flex;align-items:center;gap:8px;min-width:0}.aria-brand strong{font-size:13px;letter-spacing:1.8px;color:#a8edff}.aria-brand small{display:block;font-size:9px;letter-spacing:1.2px;color:#789bad;margin-top:2px}
+.aria-online{display:inline-flex;align-items:center;gap:6px;border:1px solid #43d9ce44;background:#43d9ce0d;padding:5px 8px;border-radius:99px;color:#79e7dc;font-size:9px;font-weight:800;white-space:nowrap}.aria-online i{width:6px;height:6px;border-radius:50%;background:#65e9db;box-shadow:0 0 10px #65e9db}
+.aria-main{display:grid;grid-template-columns:142px minmax(0,1fr);align-items:center;gap:8px;position:relative;z-index:1;min-height:150px}
+.aria-orb-wrap{width:142px;height:142px;position:relative;display:grid;place-items:center;isolation:isolate}
+.aria-orb-wrap:before{content:"";position:absolute;width:78%;height:78%;border-radius:50%;background:radial-gradient(circle,rgba(34,184,218,.2),rgba(18,98,144,.07) 55%,transparent 72%);filter:blur(8px);animation:ariaGlow 4s ease-in-out infinite}
+.aria-orb-wrap canvas{position:relative;width:100%;height:100%;z-index:2;filter:drop-shadow(0 0 9px rgba(55,206,255,.36))}
+.aria-orbit{position:absolute;inset:13px;border:1px solid rgba(96,220,255,.38);border-radius:50%;transform:rotateX(66deg) rotateZ(-22deg);animation:ariaOrbit 13s linear infinite;z-index:1;pointer-events:none}
+.aria-orbit:before,.aria-orbit:after{content:"";position:absolute;width:5px;height:5px;border-radius:50%;background:#9cf4ff;box-shadow:0 0 9px #6ce7ff;top:50%;left:-2px}
+.aria-orbit:after{width:3px;height:3px;left:auto;right:13%;top:15%;background:#72ffdb}
+.aria-orbit.orbit-two{inset:23px;border-color:rgba(93,188,255,.24);transform:rotateX(74deg) rotateZ(55deg);animation-duration:17s;animation-direction:reverse}
+.aria-core-label{position:absolute;bottom:-1px;left:0;right:0;text-align:center;font-size:8px;letter-spacing:2px;color:#65cfe7;z-index:3}
+.aria-thought{position:relative;border:1px solid #4fc9e633;background:linear-gradient(145deg,rgba(16,54,75,.72),rgba(8,28,45,.84));border-radius:13px;padding:10px 11px;min-height:92px;box-shadow:inset 0 0 20px rgba(49,185,219,.035)}
+.aria-thought:before{content:"";position:absolute;left:-6px;top:31px;width:10px;height:10px;background:#10344b;border-left:1px solid #4fc9e633;border-bottom:1px solid #4fc9e633;transform:rotate(45deg)}
+.aria-state{font-size:8px;letter-spacing:1.5px;color:#71d7ed;font-weight:800;margin-bottom:5px}.aria-question{font-size:9px;color:#8ca9bb;line-height:1.4;min-height:13px;margin-bottom:4px;overflow-wrap:anywhere}.aria-response{font-size:10px;line-height:1.55;color:#e1f5fb;max-height:75px;overflow:auto;overflow-wrap:anywhere;scrollbar-width:thin}
+.aria-form{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;position:relative;z-index:1}.aria-form input{min-width:0;width:100%;border:1px solid #28516b;background:#071725;color:#eaf8ff;padding:9px 10px;border-radius:10px;font-size:10px}.aria-form input::placeholder{color:#6f91a7}.aria-form .btn{padding:8px 11px}
+.aria-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;position:relative;z-index:1}.aria-actions .btn{font-size:9px;padding:6px 8px}.aria-actions .btn.active{border-color:#4ccfe4;color:#9cefff;background:#1a5b7044}.aria-examples{font-size:8px;color:#7795a9;line-height:1.55;position:relative;z-index:1}.aria-examples button{border:0;background:none;color:#8bd8e9;padding:0;font:inherit;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.aria-panel[data-state="listening"]{border-color:#56e2d2;box-shadow:0 0 0 1px #56e2d21c,0 0 27px #56e2d20d,var(--shadow)}
+.aria-panel[data-state="thinking"]{border-color:#79baff}
+.aria-panel[data-state="speaking"]{border-color:#6ce8c5;box-shadow:0 0 0 1px #6ce8c51c,0 0 26px #6ce8c514,var(--shadow)}
+.aria-panel[data-state="sleep"] .aria-orbit,.aria-panel[data-state="sleep"] .aria-orb-wrap:before{animation-play-state:paused;opacity:.35}
+@keyframes ariaOrbit{to{transform:rotateX(66deg) rotateZ(338deg)}}
+@keyframes ariaGlow{0%,100%{opacity:.55;transform:scale(.94)}50%{opacity:1;transform:scale(1.08)}}
+@media(max-width:1120px){.hero{grid-template-columns:minmax(0,1fr) minmax(275px,.8fr)}.timer-panel{grid-column:1/-1}}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.timer-panel{grid-column:auto}.aria-main{grid-template-columns:160px minmax(0,1fr)}.aria-orb-wrap{width:154px;height:154px}}
+@media(max-width:560px){.aria-panel{padding:14px}.aria-main{grid-template-columns:122px minmax(0,1fr);min-height:130px}.aria-orb-wrap{width:122px;height:122px}.aria-thought{min-height:90px;padding:9px}.aria-response{font-size:9px}.aria-examples{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.aria-orbit,.aria-orb-wrap:before{animation:none!important}.aria-orb-wrap canvas{filter:none}}
+@media print{.aria-panel{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -40,6 +74,34 @@
       <div><div class="heading"><span class="section-label">OVERALL TIMELINE</span><span class="pill">กำหนดการฝึกงาน</span></div><div class="goal-date">12 มีนาคม 2570<small>วันสิ้นสุด · 16:00 น.</small></div></div>
       <div><div class="percent"><strong id="calendarPct">0.00%</strong><span>ความคืบหน้าตามเวลา</span></div><div class="bar"><i id="calendarBar"></i></div><div class="goal-note">เริ่มนับตั้งแต่ 16 พฤศจิกายน 2569 เวลา 08:00 น. · เวลาประเทศไทย (UTC+7)</div></div>
     </div>
+    <section class="panel aria-panel" id="ariaPanel" data-state="idle" aria-label="ผู้ช่วย ARIA">
+      <div class="aria-head">
+        <div class="aria-brand"><span style="font-size:19px;color:#75e9ff">✧</span><div><strong>ARIA</strong><small>PERSONAL ASSISTANT</small></div></div>
+        <span class="aria-online"><i></i><span id="ariaOnlineText">ONLINE</span></span>
+      </div>
+      <div class="aria-main">
+        <div class="aria-orb-wrap" id="ariaOrbWrap" aria-label="แกนพลังงาน ARIA">
+          <span class="aria-orbit"></span><span class="aria-orbit orbit-two"></span>
+          <canvas id="ariaCanvas" width="240" height="240" aria-hidden="true"></canvas>
+          <span class="aria-core-label">NEURAL CORE</span>
+        </div>
+        <div class="aria-thought" role="status" aria-live="polite">
+          <div class="aria-state" id="ariaStateText">SYSTEM READY · STANDBY</div>
+          <div class="aria-question" id="ariaQuestion">ยินดีที่ได้พบค่ะ</div>
+          <div class="aria-response" id="ariaResponse">ฉันคือ ARIA พร้อมช่วยตรวจสอบวัน เวลา วันหยุด และกำหนดการฝึกงานค่ะ</div>
+        </div>
+      </div>
+      <form class="aria-form" id="ariaForm">
+        <input id="ariaInput" type="text" maxlength="240" autocomplete="off" placeholder="ถาม ARIA ได้เลย เช่น อีก 5 วันเป็นวันอะไร" aria-label="พิมพ์คำถามถึง ARIA">
+        <button class="btn primary" type="submit" aria-label="ส่งคำถาม">ส่ง ↗</button>
+      </form>
+      <div class="aria-actions">
+        <button class="btn" id="ariaMicBtn" type="button">🎙 พูดถาม</button>
+        <button class="btn" id="ariaVoiceToggle" type="button" aria-pressed="false">🔇 เสียงตอบ: ปิด</button>
+        <button class="btn" id="ariaSpeakBtn" type="button">🔊 อ่านคำตอบ</button>
+      </div>
+      <div class="aria-examples">ลองถาม: <button type="button" data-aria-ask="วันนี้วันอะไร เวลาเท่าไร">วันนี้วันอะไร</button> · <button type="button" data-aria-ask="อีก 5 วันเป็นวันอะไร">อีก 5 วัน</button> · <button type="button" data-aria-ask="วันที่ 10 ธันวาคม 2569 เป็นวันหยุดไหม">10 ธ.ค. หยุดไหม</button></div>
+    </section>
   </div>
   <div class="stats">
     <div class="panel stat"><div class="stat-top"><span>วันทำงานที่เหลือ</span><span class="icon">▣</span></div><div class="value" id="remainingDays">—</div><div class="sub">จันทร์–ศุกร์ หักวันหยุดแล้ว</div></div>
@@ -114,7 +176,7 @@
   <div class="panel content" style="margin-top:14px"><div class="heading"><h2>วันหยุดที่ใช้ในการคำนวณ</h2><small>แก้ไขได้ในเมนูปฏิทิน</small></div><div id="reportHolidays" class="list"></div></div>
 </section>
 </main>
-<footer class="footer"><span>ทำงานแบบ Static Site · ไม่เรียก API · ไม่มีไลบรารีภายนอก</span><span>บันทึกงานอยู่ในเบราว์เซอร์เครื่องนี้ · เวลา Asia/Bangkok</span></footer>
+<footer class="footer"><span>ARIA Assistant · Canvas 3D · Speech API · ประมวลผลคำถามวันเวลาในเครื่อง</span><span>บันทึกงานอยู่ในเบราว์เซอร์เครื่องนี้ · เวลา Asia/Bangkok</span></footer>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
@@ -200,6 +262,106 @@ function exportCsv(){const rows=[['วันที่','หัวข้องา
 function exportJson(){const payload={app:'Internship Tracker',version:2,exportedAt:new Date().toISOString(),period:{start:START_DATE,end:END_DATE},logs:state.logs,holidays:state.holidays};download('internship-tracker-backup.json',JSON.stringify(payload,null,2),'application/json');notify('ดาวน์โหลดไฟล์สำรอง JSON แล้ว');}
 function importJson(file){if(!file)return;if(file.size>5*1024*1024){notify('ไฟล์ใหญ่เกิน 5 MB');return;}const reader=new FileReader();reader.onload=()=>{try{const obj=JSON.parse(reader.result);if(!obj||!Array.isArray(obj.logs)||!Array.isArray(obj.holidays))throw new Error('รูปแบบไฟล์ไม่ถูกต้อง');const logs=obj.logs.filter(l=>l&&typeof l==='object'&&inRange(String(l.date||''))&&typeof l.title==='string').map(l=>({id:String(l.id||`import-${Date.now()}-${Math.random()}`),date:String(l.date),title:String(l.title).slice(0,120),detail:String(l.detail||'').slice(0,2500),category:String(l.category||'อื่น ๆ').slice(0,80),hours:Math.min(24,Math.max(0,Number(l.hours)||0)),status:String(l.status||'เสร็จแล้ว').slice(0,40),createdAt:String(l.createdAt||'')}));const holidays=obj.holidays.filter(h=>h&&inRange(String(h.date||''))&&typeof h.name==='string').map(h=>({date:String(h.date),name:String(h.name).slice(0,100)}));if(!confirm(`นำเข้าข้อมูล ${logs.length} รายการ และวันหยุด ${holidays.length} วัน? ข้อมูลปัจจุบันจะถูกแทนที่`))return;state={logs,holidays};persist();renderAll();renderCalendar();update();notify('นำเข้าข้อมูลสำเร็จ');}catch(e){notify('นำเข้าไม่สำเร็จ: ไฟล์ JSON ไม่ถูกต้อง');}};reader.onerror=()=>notify('อ่านไฟล์ไม่สำเร็จ');reader.readAsText(file);}
 function gotoLog(date){selectedCalendarDate=date;resetLogForm();$('logDate').value=date;activateView('logs');$('logTitle').focus();}
+// ARIA assistant: local date/calendar answers + optional browser speech
+let ariaVoiceEnabled=false,ariaRecognition=null,ariaLastAnswer='',ariaOrbState='idle',ariaOrbVisible=true,ariaOrbRunning=false,ariaOrbFrame=0;
+try{ariaVoiceEnabled=localStorage.getItem('internshipTracker.ariaVoice')==='on';}catch(e){}
+function ariaSetState(mode,label){ariaOrbState=mode;const panel=$('ariaPanel');if(!panel)return;panel.dataset.state=mode;$('ariaStateText').textContent=label||({idle:'SYSTEM READY · STANDBY',listening:'VOICE INPUT · LISTENING',thinking:'PROCESSING · CALCULATING',speaking:'VOICE OUTPUT · SPEAKING',sleep:'LOW POWER · SLEEP'}[mode]||'SYSTEM READY');$('ariaOnlineText').textContent=mode==='listening'?'LISTENING':mode==='thinking'?'PROCESSING':mode==='speaking'?'SPEAKING':mode==='sleep'?'SLEEP':'ONLINE';}
+function ariaShow(question,answer){$('ariaQuestion').textContent=question?`คุณ: ${question}`:'ผลการตรวจสอบ';$('ariaResponse').textContent=answer;ariaLastAnswer=answer;}
+function ariaWeekday(key){return formatThaiDate(key,{weekday:'long',day:'numeric',month:'long',year:'numeric'});}
+function ariaValidDateKey(key){const m=String(key).match(/^(\d{4})-(\d{2})-(\d{2})$/);if(!m)return false;const d=new Date(Date.UTC(Number(m[1]),Number(m[2])-1,Number(m[3])));return d.getUTCFullYear()===Number(m[1])&&d.getUTCMonth()+1===Number(m[2])&&d.getUTCDate()===Number(m[3]);}
+function ariaFindDate(q){
+  const today=dateKey(new Date());
+  if(/มะรืน|มะรืนนี้/.test(q))return addDays(today,2);
+  if(/พรุ่งนี้|วันพรุ่ง/.test(q))return addDays(today,1);
+  if(/วันนี้/.test(q))return today;
+  const rel=q.match(/อีก\s*(\d{1,4})\s*วัน/);if(rel)return addDays(today,Math.min(3650,Number(rel[1])));
+  let m=q.match(/(20\d{2})-(\d{1,2})-(\d{1,2})/);if(m){const key=`${m[1]}-${pad(Number(m[2]))}-${pad(Number(m[3]))}`;return ariaValidDateKey(key)?key:null;}
+  m=q.match(/(?:วันที่\s*)?(\d{1,2})[\/.-](\d{1,2})(?:[\/.-](\d{2,4}))?/);if(m){let y=m[3]?Number(m[3]):Number(today.slice(0,4));if(y<100)y+=2000;if(y>2400)y-=543;let key=`${y}-${pad(Number(m[2]))}-${pad(Number(m[1]))}`;if(!m[3]&&key<today)key=`${y+1}-${pad(Number(m[2]))}-${pad(Number(m[1]))}`;return ariaValidDateKey(key)?key:null;}
+  const months=[
+    ['มกราคม',1],['ม.ค.',1],['ม.ค',1],['กุมภาพันธ์',2],['ก.พ.',2],['ก.พ',2],['มีนาคม',3],['มี.ค.',3],['มี.ค',3],['เมษายน',4],['เม.ย.',4],['เม.ย',4],['พฤษภาคม',5],['พ.ค.',5],['พ.ค',5],['มิถุนายน',6],['มิ.ย.',6],['มิ.ย',6],['กรกฎาคม',7],['ก.ค.',7],['ก.ค',7],['สิงหาคม',8],['ส.ค.',8],['ส.ค',8],['กันยายน',9],['ก.ย.',9],['ก.ย',9],['ตุลาคม',10],['ต.ค.',10],['ต.ค',10],['พฤศจิกายน',11],['พ.ย.',11],['พ.ย',11],['ธันวาคม',12],['ธ.ค.',12],['ธ.ค',12]
+  ];
+  for(const [name,month] of months){const re=new RegExp(`(?:วันที่\\s*)?(\\d{1,2})\\s*${name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\s*(\\d{4})?`);const hit=q.match(re);if(hit){let year=hit[2]?Number(hit[2]):Number(today.slice(0,4));if(year>2400)year-=543;let key=`${year}-${pad(month)}-${pad(Number(hit[1]))}`;if(!hit[2]&&key<today)key=`${year+1}-${pad(month)}-${pad(Number(hit[1]))}`;return ariaValidDateKey(key)?key:null;}}
+  return null;
+}
+function ariaHolidayAnswer(key,askHoliday){
+  const weekday=ariaWeekday(key),weekend=isWeekend(key),holiday=holidayMap().get(key),inSchedule=inRange(key);
+  if(weekend)return `${weekday} ตรงกับวัน${dayNum(key)===6?'เสาร์':'อาทิตย์'} เป็นวันหยุดสุดสัปดาห์ค่ะ`;
+  if(holiday)return `${weekday} เป็นวันหยุดค่ะ เนื่องจาก${holiday}`;
+  if(inSchedule)return `${weekday} เป็นวันทำงานตามปฏิทินฝึกงานค่ะ ไม่มีวันหยุดราชการที่ตั้งไว้ในระบบ`;
+  return `${weekday} ค่ะ แต่วันที่อยู่นอกช่วงปฏิทินฝึกงาน จึงยังไม่มีข้อมูลวันหยุดราชการของวันดังกล่าวในระบบค่ะ`;
+}
+function ariaAnswer(raw){
+  const q=String(raw||'').trim();if(!q)return 'พิมพ์คำถามหรือกดปุ่มพูดถามได้เลยค่ะ';
+  const now=new Date(),today=dateKey(now),time=new Intl.DateTimeFormat('th-TH',{timeZone:TZ,hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).format(now);
+  if(/วันหยุด.*(มีวันไหน|วันอะไร|วันใด)|วันหยุดราชการ.*(มีวันไหน|มีอะไร|ทั้งหมด)/.test(q)){
+    const items=state.holidays.slice().sort((a,b)=>a.date.localeCompare(b.date)).filter(h=>h.date>=today);
+    return items.length?'วันหยุดราชการที่เหลือในปฏิทินฝึกงาน: '+items.map(h=>`${formatThaiDate(h.date,{day:'numeric',month:'short'})} ${h.name}`).join(' · '):'ไม่มีวันหยุดราชการที่กำหนดไว้หลังจากวันนี้ในช่วงฝึกงานค่ะ';
+  }
+  if(/เหลือ.*(วันทำงาน|วันฝึกงาน)|วันทำงาน.*เหลือ/.test(q))return `ขณะนี้เหลือวันทำงานตามปฏิทิน ${remainingWorkDays(now.getTime())} วันค่ะ`;
+  if(/เหลือ.*(กี่วัน|อีกเท่าไร)|นับถอยหลัง|countdown/.test(q)){
+    const target=parseBkk(END_DATE,END_AT).getTime(),ms=Math.max(0,target-now.getTime()),s=Math.floor(ms/1000),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);
+    return ms?`เหลืออีก ${d} วัน ${h} ชั่วโมง ${m} นาที จนถึงวันศุกร์ที่ 12 มีนาคม 2570 เวลา 16:00 น. ค่ะ`:'ถึงเวลาสิ้นสุดการฝึกงานแล้วค่ะ';
+  }
+  const key=ariaFindDate(q);
+  if(key){
+    if(/หยุด|วันหยุด|วันทำงาน/.test(q))return ariaHolidayAnswer(key,true);
+    if(key===today&&/เวลา|กี่โมง/.test(q))return `ขณะนี้เวลา ${time} น. วันนี้${ariaWeekday(key)} ค่ะ`;
+    return `${ariaWeekday(key)} ค่ะ${inRange(key)?(isWeekend(key)?' เป็นวันหยุดสุดสัปดาห์':isHoliday(key)?' เป็นวันหยุดราชการ':' เป็นวันทำงานตามปฏิทินฝึกงาน'):''}`;
+  }
+  if(/เวลา|กี่โมง|วันที่เท่าไร|วันอะไร|วันนี้/.test(q)){
+    const todayStatus=isWeekend(today)?'วันหยุดสุดสัปดาห์':holidayMap().has(today)?`วันหยุด${holidayMap().get(today)}`:inRange(today)?'วันทำงานตามปฏิทินฝึกงาน':'อยู่นอกช่วงฝึกงาน';
+    return `ขณะนี้เวลา ${time} น. วันนี้${ariaWeekday(today)} และเป็น${todayStatus}ค่ะ`;
+  }
+  return 'ตอนนี้ฉันตอบคำถามเกี่ยวกับวัน เวลา วันหยุด ปฏิทิน และกำหนดการฝึกงานได้ค่ะ ลองถามว่า “อีก 5 วันเป็นวันอะไร” หรือ “วันที่ 10 ธันวาคม 2569 เป็นวันหยุดไหม”';
+}
+function ariaGetThaiVoice(){if(!('speechSynthesis'in window))return null;const voices=window.speechSynthesis.getVoices();const thai=voices.filter(v=>(v.lang||'').toLowerCase().startsWith('th'));return thai.find(v=>/premwadee|kanya|female|หญิง/i.test(v.name))||thai[0]||voices.find(v=>(v.lang||'').toLowerCase().startsWith('th'))||null;}
+function ariaSpeak(text){if(!('speechSynthesis'in window)){notify('เบราว์เซอร์นี้ไม่รองรับเสียงพูด');return;}window.speechSynthesis.cancel();const utter=new SpeechSynthesisUtterance(String(text||ariaLastAnswer));utter.lang='th-TH';utter.rate=0.96;utter.pitch=1.08;utter.volume=1;const voice=ariaGetThaiVoice();if(voice)utter.voice=voice;utter.onstart=()=>ariaSetState('speaking');utter.onend=()=>ariaSetState('idle');utter.onerror=()=>ariaSetState('idle');window.speechSynthesis.speak(utter);}
+function ariaProcess(question,fromVoice=false){
+  const q=String(question||'').trim();if(!q)return;ariaSetState('thinking');ariaShow(q,'กำลังตรวจสอบข้อมูลค่ะ…');
+  window.setTimeout(()=>{const answer=ariaAnswer(q);ariaShow(q,answer);ariaSetState('idle');if(ariaVoiceEnabled||fromVoice&&ariaVoiceEnabled)ariaSpeak(answer);},180);
+}
+function ariaStartListening(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){notify('เบราว์เซอร์นี้ไม่รองรับการรับเสียงพูด กรุณาใช้ Chrome หรือ Edge รุ่นล่าสุด');return;}
+  if(ariaRecognition){try{ariaRecognition.stop();}catch(e){}ariaRecognition=null;}
+  try{const rec=new SR();ariaRecognition=rec;rec.lang='th-TH';rec.interimResults=false;rec.continuous=false;rec.maxAlternatives=1;
+    rec.onstart=()=>{ariaSetState('listening');$('ariaMicBtn').classList.add('active');$('ariaMicBtn').textContent='◉ กำลังฟัง…';};
+    rec.onresult=e=>{const transcript=e.results?.[0]?.[0]?.transcript||'';$('ariaInput').value=transcript;ariaProcess(transcript,true);};
+    rec.onerror=e=>{ariaSetState('idle');if(e.error==='not-allowed'||e.error==='service-not-allowed')notify('กรุณาอนุญาตการใช้ไมโครโฟนในเบราว์เซอร์');else if(e.error!=='no-speech'&&e.error!=='aborted')notify('รับเสียงไม่สำเร็จ ลองพูดอีกครั้งหรือพิมพ์คำถาม');};
+    rec.onend=()=>{$('ariaMicBtn').classList.remove('active');$('ariaMicBtn').textContent='🎙 พูดถาม';if(ariaOrbState==='listening')ariaSetState('idle');ariaRecognition=null;};
+    rec.start();
+  }catch(e){ariaSetState('idle');notify('เริ่มไมโครโฟนไม่ได้ กรุณาตรวจสอบสิทธิ์การใช้งาน');}
+}
+function ariaSetVoiceMode(enabled){ariaVoiceEnabled=!!enabled;try{localStorage.setItem('internshipTracker.ariaVoice',enabled?'on':'off');}catch(e){}const b=$('ariaVoiceToggle');b.textContent=enabled?'🔊 เสียงตอบ: เปิด':'🔇 เสียงตอบ: ปิด';b.classList.toggle('active',enabled);b.setAttribute('aria-pressed',String(enabled));if(!enabled&&'speechSynthesis'in window)window.speechSynthesis.cancel();}
+$('ariaForm').addEventListener('submit',e=>{e.preventDefault();const q=$('ariaInput').value.trim();if(!q)return;ariaProcess(q);$('ariaInput').value='';});
+$('ariaMicBtn').addEventListener('click',ariaStartListening);
+$('ariaVoiceToggle').addEventListener('click',()=>ariaSetVoiceMode(!ariaVoiceEnabled));
+$('ariaSpeakBtn').addEventListener('click',()=>{if(ariaLastAnswer)ariaSpeak(ariaLastAnswer);else notify('ยังไม่มีคำตอบให้อ่านค่ะ');});
+document.querySelectorAll('[data-aria-ask]').forEach(b=>b.addEventListener('click',()=>ariaProcess(b.dataset.ariaAsk)));
+ariaSetVoiceMode(ariaVoiceEnabled);
+
+// Draw a small 3D-style particle core on Canvas. Animation pauses off-screen/in background.
+(function initAriaOrb(){
+  const canvas=$('ariaCanvas');if(!canvas||!canvas.getContext)return;const ctx=canvas.getContext('2d');if(!ctx)return;
+  const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const points=[];const count=92,golden=Math.PI*(3-Math.sqrt(5));for(let i=0;i<count;i++){const y=1-(i/(count-1))*2,r=Math.sqrt(1-y*y),a=golden*i;points.push({x:Math.cos(a)*r,y,z:Math.sin(a)*r});}
+  const dpr=Math.min(window.devicePixelRatio||1,1.5);canvas.width=Math.round(240*dpr);canvas.height=Math.round(240*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
+  function draw(ts=0){const w=240,h=240,cx=120,cy=120;ctx.clearRect(0,0,w,h);const t=reduced?0:ts*.00022, pulse=ariaOrbState==='speaking'?1+Math.sin(ts*.018)*.045:ariaOrbState==='listening'?1+Math.sin(ts*.012)*.025:1+Math.sin(ts*.002)*.012,radius=68*pulse;
+    const glow=ctx.createRadialGradient(cx,cy,5,cx,cy,94);glow.addColorStop(0,'rgba(59,220,245,.16)');glow.addColorStop(.55,'rgba(26,153,202,.08)');glow.addColorStop(1,'rgba(8,30,52,0)');ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(-.24);ctx.beginPath();ctx.ellipse(0,0,91,30,0,0,Math.PI*2);ctx.strokeStyle='rgba(92,221,255,.28)';ctx.lineWidth=1;ctx.stroke();ctx.rotate(.68);ctx.beginPath();ctx.ellipse(0,0,86,26,0,0,Math.PI*2);ctx.strokeStyle='rgba(90,190,255,.20)';ctx.stroke();ctx.restore();
+    const projected=points.map(p=>{const x=p.x*Math.cos(t)+p.z*Math.sin(t),z=-p.x*Math.sin(t)+p.z*Math.cos(t),y=p.y*Math.cos(.38)-z*Math.sin(.38),zz=p.y*Math.sin(.38)+z*Math.cos(.38);const scale=3.15/(3.15+zz*.72);return{x:cx+x*radius*scale,y:cy+y*radius*scale,z:zz,scale};}).sort((a,b)=>a.z-b.z);
+    for(let i=0;i<projected.length;i++){const a=projected[i];for(let j=i+1;j<projected.length;j++){const b=projected[j],dx=a.x-b.x,dy=a.y-b.y,dist=dx*dx+dy*dy;if(dist<390){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(88,211,244,${Math.max(.025,.15-dist/3000)*(a.scale+b.scale)/2})`;ctx.lineWidth=.55;ctx.stroke();}}}
+    for(const p of projected){const front=(p.z+1)/2,rr=1.05+p.scale*.65;ctx.beginPath();ctx.arc(p.x,p.y,rr,0,Math.PI*2);ctx.fillStyle=`rgba(${Math.round(90+40*front)},${Math.round(205+35*front)},255,${.32+front*.62})`;ctx.shadowBlur=front>0.65?7:2;ctx.shadowColor='#56dfff';ctx.fill();}ctx.shadowBlur=0;
+    const core=ctx.createRadialGradient(cx-12,cy-15,2,cx,cy,42);core.addColorStop(0,'rgba(173,250,255,.23)');core.addColorStop(.45,'rgba(41,179,224,.10)');core.addColorStop(1,'rgba(31,132,190,0)');ctx.fillStyle=core;ctx.beginPath();ctx.arc(cx,cy,42,0,Math.PI*2);ctx.fill();
+  }
+  let lastOrbDraw=0;function loop(ts){if(!ariaOrbRunning)return;if(!document.hidden&&ariaOrbVisible&&ts-lastOrbDraw>=33){draw(ts);lastOrbDraw=ts;}ariaOrbFrame=requestAnimationFrame(loop);}
+  function start(){if(reduced){draw(0);return;}if(!ariaOrbRunning&&ariaOrbVisible&&!document.hidden){ariaOrbRunning=true;ariaOrbFrame=requestAnimationFrame(loop);}}
+  function stop(){ariaOrbRunning=false;if(ariaOrbFrame)cancelAnimationFrame(ariaOrbFrame);ariaOrbFrame=0;}
+  if('IntersectionObserver'in window){const io=new IntersectionObserver(entries=>{ariaOrbVisible=entries.some(x=>x.isIntersecting);if(ariaOrbVisible)start();else stop();},{threshold:.05});io.observe(canvas);}else start();
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start();});
+  if(reduced)draw(0);else start();
+})();
+
 // Navigation & actions
 document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>activateView(b.dataset.view)));document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>activateView(b.dataset.goto)));
 $('quickLogBtn').addEventListener('click',()=>gotoLog(dateKey(new Date())));$('logSelectedBtn').addEventListener('click',()=>{if(inRange(selectedCalendarDate))gotoLog(selectedCalendarDate);});$('calendarGrid').addEventListener('click',e=>{const b=e.target.closest('[data-date]');if(!b)return;selectedCalendarDate=b.dataset.date;renderCalendar();});
