@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: aria-internship-dashboard-gemini
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.1-flash-lite
+      - key: ARIA_ACCESS_PASSWORD
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
